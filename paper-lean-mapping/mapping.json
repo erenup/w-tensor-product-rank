@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "paper": "paper/main.tex",
+  "scope": "Every numbered theorem, proposition, lemma, corollary, definition and remark is indexed in TeX order. Seven algebraic Lean targets are linked through numbered results or supporting anchors and checked against exact-type and axiom probes. The complete product-moment and binary-monomial tensor-rank theorems remain paper only.",
+  "lean_targets": [
+    {
+      "id": "univariate_moment_bound",
+      "declaration": "TR29.univariate_moment_bound",
+      "source": "lean/TR29/Univariate.lean",
+      "proposition": "TR29.UnivariateMomentBound",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For arbitrary complex nodes and weights, b>=1 and d>=b, a nonzero moment of degree b and zero moments for b<e<=d imply n>=d-b+1. Nodes may repeat or be zero, and weights need not be positive or nonzero. This is a one-coordinate supporting theorem."
+    },
+    {
+      "id": "geometric_kernel_identity",
+      "declaration": "TR29.geometric_kernel_identity",
+      "source": "lean/TR29/Series.lean",
+      "proposition": "TR29.GeometricKernelIdentity",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "Over every field K of the stated Lean type, the actual power series with coefficient (-z^(-1))^e is an inverse of 1+C(z^(-1))X. At z=0 the Lean inverse convention gives kernel 1; its later contribution is killed by a positive power of z."
+    },
+    {
+      "id": "matrix_moment_leading",
+      "declaration": "TR29.matrix_moment_leading",
+      "source": "lean/TR29/Series.lean",
+      "proposition": "TR29.MatrixMomentLeadingTheorem",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "Over every such field, for actual finite matrix weights and nodes with b>=1, d>=b, nonsingular degree-b matrix moment and vanishing moments for b<e<=d, the actual moment-series matrix has zero coefficients below d-b+1, the prescribed first coefficient, and nonzero determinant."
+    },
+    {
+      "id": "anti_diagonal_blocks",
+      "declaration": "TR29.anti_diagonal_blocks",
+      "source": "lean/TR29/Blocks.lean",
+      "proposition": "TR29.AntiDiagonalBlockTheorem",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "An actual block matrix with zero blocks before one anti-diagonal and one common nonsingular block on that anti-diagonal has nonzero determinant. Later blocks are arbitrary. This does not state the exact signed determinant-power identity for the particular paper vectors."
+    },
+    {
+      "id": "orthogonal_gram_assembly",
+      "declaration": "TR29.orthogonal_gram_assembly",
+      "source": "lean/TR29/Blocks.lean",
+      "proposition": "TR29.OrthogonalGramAssembly",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For arbitrary complex vectors and literal weighted bilinear pairing, zero cross-block pairings and nonsingular within-block Gram matrices imply independence of the concatenated family and its dimension bound."
+    },
+    {
+      "id": "tr29_gram_lower_bound",
+      "declaration": "TR29.tr29_gram_lower_bound",
+      "source": "lean/TR29/Count.lean",
+      "proposition": "TR29.TR29GramLowerBound",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For k>=1 and every d_i>=2, explicit orthogonality and Gram-determinant hypotheses on blocks of sizes 2^k and (d_i-2)2^(k-1) imply n>=2^(k-1)(sum_i d_i-2k+2). This is the conditional W-block count, not the full binary-monomial count or an unconditional product-moment lower bound."
+    },
+    {
+      "id": "finite_chart_avoidance",
+      "declaration": "TR29.finite_chart_avoidance",
+      "source": "lean/TR29/Avoidance.lean",
+      "proposition": "TR29.FiniteChartAvoidance",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "Any finite list of already nonzero multivariate complex polynomials and finitely many factors 1+t_i z_(i,l) are simultaneously nonzero at one finite parameter tuple. The target does not prove that the particular determinant numerators from the paper are nonzero."
+    }
+  ],
+  "exact_checks": [
+    {
+      "id": "univariate_charts",
+      "source": "verification/check_charts.py",
+      "function": "univariate_cases",
+      "scope": "Exact rational moment identities at degrees 2 through 9 with parameter 2; the anti-diagonal value is nonzero, and for degrees at least 3 the extra-block zero pattern and rank are checked.",
+      "limitation": "These eight finite formulas do not prove the universal univariate theorem or the all-parameter multivariate construction."
+    },
+    {
+      "id": "cubic_finite_chart",
+      "source": "verification/check_charts.py",
+      "function": "cubic_chart",
+      "scope": "For one fixed 20-term cubic-W triple decomposition over Q(zeta_10), parameter tuple (2,3,4) gives basic Gram rank 8, three extra Gram ranks 4, all cross-block pairings zero and full Gram rank 20.",
+      "limitation": "This validates one decomposition and parameter tuple. It does not supply the lower bound for every possible decomposition or prove that every chart is nonsingular; a symmetric chart is explicitly rejected."
+    },
+    {
+      "id": "cubic_coefficients_and_moments",
+      "source": "verification/exact_cyclotomic.py",
+      "function": "main",
+      "scope": "For a fixed 20-term cubic-W triple identity, all 64 coefficients and 64 product moments are checked over Q(zeta_10), together with four finite Hilbert ranks and the symmetric-chart intersection and Gram calculations.",
+      "limitation": "A single identity and its finite evaluation spaces do not prove the full rank theorem or general nondegeneracy. The symmetric-chart data must not be advertised as a full-rank Gram construction."
+    },
+    {
+      "id": "binary_character_examples",
+      "source": "families/monomial-products/verification/check_exact.py",
+      "function": "upper",
+      "scope": "Eight fixture exponent tuples are checked by exact determinant, lattice-membership and cyclotomic coefficient arithmetic, including every multihomogeneous coefficient. The certified summand counts are 54, 64, 51, 20, 66, 15, 8 and 24 in fixture order.",
+      "limitation": "These are explicit decompositions, not a proof of the all-parameter lattice lemma, character theorem, lower bound or binary rank formula."
+    },
+    {
+      "id": "binary_gram_and_remainder_examples",
+      "source": "families/monomial-products/verification/check_exact.py",
+      "function": "lower",
+      "scope": "Three rational product cubatures with vector-list lengths 33, 54 and 13 are checked throughout their coefficient boxes; repeated and zero-coordinate nodes are included. All Gram entries, cross-block zeros, internal anti-triangular zeros, a nonzero full determinant and selected Laurent identities at zero, positive and negative rational nodes are checked.",
+      "limitation": "These finite cubatures do not prove construction or cancellation for arbitrary multivariate moment data, the rational-series-numerator bridge, or universal simultaneous chart existence."
+    }
+  ],
+  "numbered_results": [
+    {
+      "label": "thm:main",
+      "environment": "theorem",
+      "number": "1.1",
+      "section": "1",
+      "source": "paper/main.tex",
+      "title": "Exact complex rank of products of binary monomials",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "binary_character_examples",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "The finite checks establish their stated identities and evaluated Gram matrices. Algebraic supporting targets are mapped separately.",
+      "paper_only": "The full equality for every k>=1 and a_i>=b_i>=1, with fixed symmetric blocks, is proved in the paper. No Lean declaration states this tensor-rank formula, the full binary count or its upper bound."
+    },
+    {
+      "label": "cor:W",
+      "environment": "corollary",
+      "number": "1.2",
+      "section": "1",
+      "source": "paper/main.tex",
+      "title": "Products of generalized W tensors",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "cubic_finite_chart",
+        "cubic_coefficients_and_moments"
+      ],
+      "covered": "The 20-term cubic-W example and a corresponding finite Gram matrix are checked exactly. The conditional W numerical core appears at the supporting equation below.",
+      "paper_only": "Specializing the complete tensor theorem to all k>=2 and d_i>=3, together with its matching upper bound, remains in the paper. A single computed decomposition does not prove the lower bound for arbitrary decompositions."
+    },
+    {
+      "label": "thm:moment",
+      "environment": "theorem",
+      "number": "2.1",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Product-moment lower bound",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "univariate_charts",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "Finite examples of the moment and Gram construction are checked, and universal algebraic components are mapped separately.",
+      "paper_only": "The complete multivariate theorem from just the full-box product moments, with b_i>=1 and d_i>=2b_i, is paper only. The specific rational vectors, every cancellation, the common finite chart and the full binary count are not assembled in Lean."
+    },
+    {
+      "label": "lb:U-gram",
+      "environment": "lemma",
+      "number": "2.2",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "The basic Gram matrix",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "cubic_finite_chart",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "The basic Gram block and its nondegeneracy are checked in the specified finite examples.",
+      "paper_only": "The universal Kronecker-product identification and exact constant determinant of each factor are proved in the paper. No Lean theorem binds these particular vectors to that formula."
+    },
+    {
+      "label": "lb:orthogonality",
+      "environment": "lemma",
+      "number": "2.3",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Orthogonality of the evaluation lists",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "cubic_finite_chart",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "Cross-block pairings vanish in the specified exact finite Gram calculations.",
+      "paper_only": "The degree-box argument proving every cancellation for the specific multivariate U/V vectors remains in the paper. The Lean assembly theorem assumes those pairings vanish."
+    },
+    {
+      "label": "lb:anti-triangular",
+      "environment": "lemma",
+      "number": "2.4",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "The first anti-diagonal block",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "anti_diagonal_blocks"
+      ],
+      "exact_checks": [
+        "univariate_charts",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "Lean proves the general determinant-nonvanishing consequence of the zero-block and common nonsingular anti-diagonal-block hypotheses. The indicated finite extra blocks also pass exact checks.",
+      "paper_only": "The specific V-block entry formula, its moment cancellations, the index shift and the exact signed identity det(Gram(V_i))=det(H_i)^delta_i remain in the paper."
+    },
+    {
+      "label": "lb:Laurent",
+      "environment": "lemma",
+      "number": "2.5",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Finite Laurent division identity",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "The finite identity is checked at selected zero, positive and negative rational nodes for the fixture degrees and multiplicities.",
+      "paper_only": "The general finite identity and its remainder order at infinity are paper only. The separately mapped formal geometric-kernel theorem is not this exact finite identity."
+    },
+    {
+      "label": "lb:H-nonsingular",
+      "environment": "lemma",
+      "number": "2.6",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Nonzero rational determinant of each H block",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "matrix_moment_leading"
+      ],
+      "exact_checks": [],
+      "covered": "Lean proves the leading-coefficient and determinant-nonvanishing mechanism for an actual matrix-valued moment series over an arbitrary field, including rational-function coefficient fields in other parameters.",
+      "paper_only": "Identification of the particular multivariate H_i with that series, the specific matrix-moment hypotheses, transfer back to a nonzero rational determinant, and construction of the nonzero numerator polynomial remain in the paper."
+    },
+    {
+      "label": "prop:lower",
+      "environment": "proposition",
+      "number": "3.1",
+      "section": "3",
+      "source": "paper/main.tex",
+      "title": "Reduction of every tensor decomposition to the lower bound",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct formal or finite checker is assigned to the arbitrary-decomposition reduction.",
+      "paper_only": "The initial affine coordinate choice, differential-operator coefficient calculation, nonzero top moments and application of the full product-moment theorem are proved in the paper. Repeated nodes and zero coordinates remain allowed."
+    },
+    {
+      "label": "ub:lattice",
+      "environment": "lemma",
+      "number": "4.1",
+      "section": "4",
+      "source": "paper/sections/upper_bound.tex",
+      "title": "Lattice index and coefficient-box avoidance",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "binary_character_examples"
+      ],
+      "covered": "The integer matrix determinant, adjugate and coefficient-box membership claims are checked for eight fixed exponent tuples.",
+      "paper_only": "The general column-lattice index formula and box-avoidance argument for all a_i>=b_i>=1 remain in the paper. No binary lattice theorem is formalized in Lean."
+    },
+    {
+      "label": "ub:orthogonality",
+      "environment": "lemma",
+      "number": "4.2",
+      "section": "4",
+      "source": "paper/sections/upper_bound.tex",
+      "title": "Finite character orthogonality",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "binary_character_examples"
+      ],
+      "covered": "The coefficient sums for the finite quotient groups in the eight examples are checked exactly modulo their cyclotomic polynomials.",
+      "paper_only": "The general character-count and orthogonality theorem for every finite abelian group is proved in the paper."
+    },
+    {
+      "label": "prop:upper",
+      "environment": "proposition",
+      "number": "4.3",
+      "section": "4",
+      "source": "paper/sections/upper_bound.tex",
+      "title": "The finite-character upper decomposition",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "binary_character_examples",
+        "cubic_coefficients_and_moments"
+      ],
+      "covered": "Every coefficient of eight explicit binary-monomial character decompositions and the fixed cubic-W identity is checked exactly.",
+      "paper_only": "The all-parameter upper construction, its nonzero weights, distinct normalized supports and precise summand count remain in the paper. No Lean theorem states this upper bound."
+    }
+  ],
+  "supporting_steps": [
+    {
+      "label": "lb:truncation",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "One-coordinate supporting lower bound",
+      "lean_targets": [
+        "univariate_moment_bound"
+      ],
+      "exact_checks": [
+        "univariate_charts"
+      ],
+      "covered": "Lean proves the universal one-coordinate bound n>=d-b+1 from the nonzero degree-b moment and vanishing subsequent moments, assuming b>=1 and d>=b. It permits arbitrary complex weights and zero or repeated nodes.",
+      "paper_only": "This is a supporting one-coordinate result, not the paper product-moment theorem for arbitrary k. No standalone numbered paper lemma is replaced by this target."
+    },
+    {
+      "label": "lb:moments",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Full coefficient box and polynomial functional",
+      "lean_targets": [],
+      "exact_checks": [
+        "cubic_coefficients_and_moments",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "The complete moment box is checked for the specified finite examples.",
+      "paper_only": "Passing from the coefficient identities to weighted evaluation on the entire bounded-coordinate-degree polynomial space, and using it in all particular multivariate pairings, remains in the paper."
+    },
+    {
+      "label": "lb:pairing",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Weighted bilinear Gram assembly",
+      "lean_targets": [
+        "orthogonal_gram_assembly"
+      ],
+      "exact_checks": [
+        "cubic_finite_chart",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "Lean proves independence and the sum-of-block-sizes bound from literal zero cross-block pairings and nonzero within-block Gram determinants, for arbitrary complex vectors and weights.",
+      "paper_only": "The construction of the particular evaluation matrix E and diagonal W from the product-moment formula, and verification of the hypotheses for those vectors, remain in the paper. No Hermitian or positive-definite assertion is made."
+    },
+    {
+      "label": "lb:H-leading",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "Formal kernel underlying the leading Laurent matrix",
+      "lean_targets": [
+        "geometric_kernel_identity"
+      ],
+      "exact_checks": [],
+      "covered": "Lean proves the exact geometric-series inverse over arbitrary fields. It includes the inverse-at-zero convention used with a vanishing positive node power in the matrix-moment theorem.",
+      "paper_only": "The paper identifies its particular rational H_i, its Laurent expansion and the nonzero rational determinant numerator. That bridge is not a Lean target."
+    },
+    {
+      "label": "lb:section",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "One simultaneous finite chart in the proof of Theorem 2.1",
+      "lean_targets": [
+        "finite_chart_avoidance"
+      ],
+      "exact_checks": [],
+      "covered": "Lean proves simultaneous avoidance of every coordinate pole and a finite list of already nonzero multivariate polynomials at one finite complex tuple.",
+      "paper_only": "Clearing the denominators of the specific rational H_i and proving that each resulting determinant numerator is nonzero remain in the paper. Separate good points for different blocks are not enough."
+    },
+    {
+      "label": "eq:W-rank",
+      "section": "1",
+      "source": "paper/main.tex",
+      "title": "Conditional W-block numerical count",
+      "lean_targets": [
+        "tr29_gram_lower_bound"
+      ],
+      "exact_checks": [],
+      "covered": "Lean derives the W count from block sizes 2^k and (d_i-2)2^(k-1), for k>=1 and all d_i>=2, subject to explicit orthogonality and nonsingular Gram hypotheses.",
+      "paper_only": "The displayed tensor-rank equality requires the paper construction, arbitrary-decomposition reduction and upper bound. The formal count is neither an unconditional moment theorem nor the full binary-monomial count."
+    },
+    {
+      "label": "lb:parameters",
+      "section": "2",
+      "source": "paper/sections/lower_bound.tex",
+      "title": "The full binary-monomial block count",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean target states this all-multiplicity numerical count.",
+      "paper_only": "Q=product_i(b_i+1) and N=Q+sum_i(d_i-2b_i)product_(j!=i)(b_j+1), including balanced factors and empty extra lists, are counted and combined with the specific vector construction in the paper."
+    },
+    {
+      "label": "eq:initial-chart",
+      "section": "3",
+      "source": "paper/main.tex",
+      "title": "Normalization of an arbitrary finite decomposition",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct formal or finite checker is assigned.",
+      "paper_only": "Choosing one affine coordinate chart for all finitely many factors, absorbing scales into nonzero weights and deriving the exact moment functional remain in the paper. This is distinct from the later Gram-parameter choice."
+    },
+    {
+      "label": "app:checks",
+      "section": "A",
+      "source": "paper/main.tex",
+      "title": "Scope of exact finite verification",
+      "lean_targets": [],
+      "exact_checks": [
+        "univariate_charts",
+        "cubic_finite_chart",
+        "cubic_coefficients_and_moments",
+        "binary_character_examples",
+        "binary_gram_and_remainder_examples"
+      ],
+      "covered": "The exact-check entry points and their explicitly listed finite ranges are linked here.",
+      "paper_only": "Finite computations are supporting checks. They do not replace the universal chart-existence argument, the all-parameter lattice theorem or the reduction of an arbitrary decomposition."
+    }
+  ],
+  "aggregate": {
+    "declaration": "TR29.core_theorems",
+    "proposition": "TR29.CoreTheorems",
+    "source": "lean/TR29/Proofs.lean",
+    "scope": "The conjunction of seven universally quantified algebraic targets. It does not state the full multivariate product-moment theorem, full binary count or exact tensor-rank formula."
+  }
+}

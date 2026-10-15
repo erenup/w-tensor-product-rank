@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying paper; authorship is TBD."
+title: "The partially symmetric rank of products of binary monomials"
+type: software
+authors:
+  - name: "TBD"
+repository-code: "https://github.com/erenup/w-tensor-product-rank"
+abstract: >-
+  Exact complex partially symmetric rank formulas for all products of
+  positive binary monomials with fixed symmetric blocks, including
+  generalized W tensors. Includes the full product-moment and character
+  proofs, seven universal algebraic targets in Lean, and exact finite checks.
+license: MIT
+keywords:
+  - partially symmetric rank
+  - W tensors
+  - binary monomials
+  - moment conditions
+  - Gram matrices

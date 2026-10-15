@@ -1,0 +1,26 @@
+{
+  "check_charts.py": [
+    {
+      "label": "change one upper-decomposition coefficient",
+      "rejection": "U-W orthogonality"
+    },
+    {
+      "label": "choose a chart with a pole",
+      "rejection": "chart pole"
+    },
+    {
+      "label": "incorrectly presume every chart is good",
+      "rejection": "chart block nondegeneracy"
+    }
+  ],
+  "exact_cyclotomic.py": [
+    {
+      "label": "omit one summand",
+      "rejection": "coefficient (0, 0, 0)"
+    },
+    {
+      "label": "wrong summand coefficient",
+      "rejection": "coefficient (0, 0, 0)"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+\section{A product-moment lower bound}
+\label{lb:section}
+
+The lower bound is a statement about finite product-moment formulas over
+\(\C\).  No positivity of the weights, distinctness of the nodes, or
+nonvanishing of their coordinates is required.
+
+\begin{theorem}[Product-moment lower bound]
+\label{thm:moment}
+Let \(k\geq 1\), and let \(b_i\geq 1\) and \(d_i\geq 2b_i\) be
+integers for \(1\leq i\leq k\).  Suppose that
+\[
+  m_i:\C[z_i]_{\leq d_i}\longrightarrow\C
+\]
+is a linear functional satisfying
+\begin{equation}
+  m_i(z_i^e)=0\quad(b_i<e\leq d_i),
+  \qquad \beta_i:=m_i(z_i^{b_i})\neq 0.
+  \label{lb:truncation}
+\end{equation}
+Let \(n\geq1\), and let \(z_\ell=(z_{1,\ell},\ldots,z_{k,\ell})\in\C^k\) and
+\(w_\ell\in\C\setminus\{0\}\), for \(1\leq\ell\leq n\), satisfy
+\begin{equation}
+  \sum_{\ell=1}^{n}w_\ell\prod_{i=1}^{k}z_{i,\ell}^{e_i}
+  =\prod_{i=1}^{k}m_i(z_i^{e_i})
+  \qquad(0\leq e_i\leq d_i).
+  \label{lb:moments}
+\end{equation}
+Set
+\begin{equation}
+  q_i=b_i+1,\qquad \delta_i=d_i-2b_i,\qquad
+  Q=\prod_{i=1}^{k}q_i,\qquad
+  N=Q+\sum_{i=1}^{k}\delta_i\frac{Q}{q_i}.
+  \label{lb:parameters}
+\end{equation}
+Then \(n\geq N\).  The nodes may repeat, and any of their coordinates
+may be zero.
+\end{theorem}
+
+We prove the theorem by constructing \(N\) vectors with an invertible
+Gram matrix.  The construction uses a parameter-dependent symmetric
+bilinear pairing and indexed evaluation lists.  We first establish
+nonsingularity over a rational function field, then choose one common
+finite parameter vector.
+
+Introduce independent parameters \(t_1,\ldots,t_k\), and write
+\[
+  K=\C(t_1,\ldots,t_k),\qquad
+  h_{i,\ell}=1+t_i z_{i,\ell},\qquad
+  w_\ell(t)=w_\ell\prod_{i=1}^{k}h_{i,\ell}^{d_i}.
+\]
+Each \(h_{i,\ell}\) is a nonzero polynomial, including when
+\(z_{i,\ell}=0\).  On \(K^n\) use the diagonal bilinear pairing
+\begin{equation}
+  \langle f,g\rangle_t
+     =\sum_{\ell=1}^{n}w_\ell(t)f(\ell)g(\ell).
+  \label{lb:pairing}
+\end{equation}
+For \(0\leq\varepsilon_i\leq b_i\), define
+\begin{equation}
+  u_\varepsilon(\ell)
+    =\prod_{i=1}^{k}
+       \frac{z_{i,\ell}^{\varepsilon_i}}{h_{i,\ell}^{b_i}},
+  \qquad
+  \mathcal U=(u_\varepsilon)_{0\leq\varepsilon_i\leq b_i}.
+  \label{lb:U}
+\end{equation}
+For each \(i\) with \(\delta_i>0\), also define
+\begin{equation}
+  v_{i,s,\varepsilon}(\ell)
+    =\frac{z_{i,\ell}^{s}}{h_{i,\ell}^{s}}
+       \prod_{j\neq i}
+       \frac{z_{j,\ell}^{\varepsilon_j}}{h_{j,\ell}^{b_j}},
+  \quad
+  \begin{gathered}
+    b_i+1\leq s\leq d_i-b_i,\\[-2pt]
+    0\leq\varepsilon_j\leq b_j\quad(j\neq i).
+  \end{gathered}
+  \label{lb:V}
+\end{equation}
+Denote this list by \(\mathcal V_i\); when \(\delta_i=0\), let
+\(\mathcal V_i\) be empty.  Thus \(\mathcal U\) contains \(Q\) vectors
+and \(\mathcal V_i\) contains \(\delta_iQ/q_i\) vectors.  Empty products,
+including empty Kronecker products of matrices, are interpreted as \(1\).
+
+By linearity, \eqref{lb:moments} applies to any product of univariate
+polynomials whose degree in coordinate \(i\) is at most \(d_i\).  We
+use it in this form throughout the Gram calculations.
+
+\begin{lemma}
+\label{lb:U-gram}
+For \(0\leq p,r\leq b_i\), set
+\[
+  G_i(t_i)_{p,r}
+   =m_i\bigl(z_i^{p+r}(1+t_i z_i)^{\delta_i}\bigr).
+\]
+The Gram matrix of \(\mathcal U\) is
+\(\bigotimes_{i=1}^{k}G_i(t_i)\), and
+\begin{equation}
+  \det G_i(t_i)
+    =(-1)^{q_i(q_i-1)/2}\beta_i^{q_i}\neq 0.
+  \label{lb:G-det}
+\end{equation}
+In particular, this Gram matrix is invertible for every finite choice
+of the parameters for which the vectors are defined.
+\end{lemma}
+
+\begin{proof}
+The polynomial defining an entry of \(G_i\) has degree at most
+\(2b_i+\delta_i=d_i\).  If \(p+r>b_i\), every monomial in it has
+zero \(m_i\)-value by \eqref{lb:truncation}.  If \(p+r=b_i\), only its
+lowest term survives, and the entry equals \(\beta_i\).  Reversing the
+columns therefore gives an upper triangular matrix with constant
+diagonal \(\beta_i\), proving \eqref{lb:G-det}.  Finally,
+\eqref{lb:pairing} and \eqref{lb:U} give
+\[
+  \langle u_\varepsilon,u_\eta\rangle_t
+   =\sum_\ell w_\ell\prod_i
+      z_{i,\ell}^{\varepsilon_i+\eta_i}h_{i,\ell}^{\delta_i}
+   =\prod_iG_i(t_i)_{\varepsilon_i,\eta_i},
+\]
+which identifies the Gram matrix as the stated Kronecker product.
+\end{proof}
+
+\begin{lemma}
+\label{lb:orthogonality}
+The lists \(\mathcal U,\mathcal V_1,\ldots,\mathcal V_k\) are mutually
+orthogonal for \eqref{lb:pairing}.
+\end{lemma}
+
+\begin{proof}
+In pairing \(v_{i,s,\varepsilon}\) with \(u_\eta\), the factor in
+coordinate \(i\), after including the weight, is
+\[
+   z_i^{s+\eta_i}(1+t_i z_i)^{d_i-s-b_i}.
+\]
+The exponent of \(1+t_i z_i\) is nonnegative.  Every monomial has
+degree at least \(s>b_i\) and at most
+\(d_i-b_i+\eta_i\leq d_i\), so its \(m_i\)-value is zero.  Every
+other coordinate also has degree at most its prescribed \(d_j\).
+Equation~\eqref{lb:moments} proves
+\(\langle\mathcal V_i,\mathcal U\rangle_t=0\).
+
+If \(i\neq j\), pair a vector from \(\mathcal V_i\) with one from
+\(\mathcal V_j\).  The coordinate-\(i\) factor has the same form,
+with \(\eta_i\) supplied by the second vector, and again has zero
+moment.  The coordinate-\(j\) factor has nonnegative exponent
+\(d_j-s'-b_j\) on \(1+t_jz_j\) and degree at most \(d_j\).
+All remaining coordinates have the form used in
+Lemma~\ref{lb:U-gram}.  Thus every use of \eqref{lb:moments} stays
+inside its degree box, and
+\(\langle\mathcal V_i,\mathcal V_j\rangle_t=0\).
+\end{proof}
+
+It remains to analyze the Gram matrix within each nonempty
+\(\mathcal V_i\).  Put \(r_i=Q/q_i\), and let \(H_i(t)\) be the
+\(r_i\)-by-\(r_i\) matrix indexed by the tuples
+\(\varepsilon,\eta\) on coordinates other than \(i\), with entries
+\begin{equation}
+  H_i(t)_{\varepsilon,\eta}
+    =\sum_{\ell=1}^{n}w_\ell
+       \frac{z_{i,\ell}^{d_i+1}}{1+t_i z_{i,\ell}}
+       \prod_{j\neq i}
+          z_{j,\ell}^{\varepsilon_j+\eta_j}
+          (1+t_jz_{j,\ell})^{\delta_j}.
+  \label{lb:H}
+\end{equation}
+
+\begin{lemma}
+\label{lb:anti-triangular}
+Up to the sign of a block-column permutation, the Gram determinant of
+\(\mathcal V_i\) equals \(\det(H_i(t))^{\delta_i}\).
+\end{lemma}
+
+\begin{proof}
+Order the blocks by increasing \(s\).  The \((s,s')\) block has entries
+\begin{equation}
+  \sum_{\ell=1}^{n}w_\ell
+     z_{i,\ell}^{s+s'}h_{i,\ell}^{d_i-s-s'}
+     \prod_{j\neq i}
+       z_{j,\ell}^{\varepsilon_j+\eta_j}h_{j,\ell}^{\delta_j}.
+  \label{lb:V-block}
+\end{equation}
+If \(s+s'\leq d_i\), this is a polynomial expression in the moment
+box, and all its coordinate-\(i\) degrees exceed \(b_i\).  Hence
+the entire block is zero.  If \(s+s'=d_i+1\), the block is exactly
+\(H_i(t)\).
+
+Write \(s=b_i+1+a\), where \(0\leq a<\delta_i\).  After reversing
+the block columns, the column with index \(a'\) corresponds to
+\(s'=d_i-b_i-a'\), so
+\[
+  s+s'=d_i+1+a-a'.
+\]
+Every block above the diagonal is therefore zero, while every diagonal
+block is \(H_i(t)\).  The resulting block lower triangular matrix has
+determinant \(\det(H_i(t))^{\delta_i}\), as asserted.
+\end{proof}
+
+The next identity proves that \(H_i\) is nonsingular as a rational
+matrix.  Its form is chosen to include zero node coordinates.
+
+\begin{lemma}
+\label{lb:Laurent}
+For integers \(d\geq2b\) and \(b\geq1\), the following identity holds
+whenever \(t\neq0\) and \(1+tz\neq0\):
+\begin{equation}
+  \frac{z^{d+1}}{1+tz}
+   =\sum_{p=b}^{d}(-1)^{d-p}
+       \frac{z^p}{t^{d+1-p}}
+     +(-1)^{d+1-b}
+       \frac{z^b}{t^{d+1-b}(1+tz)}.
+  \label{lb:Laurent-identity}
+\end{equation}
+For each fixed \(z\neq0\), the final term has order
+\(O(t^{-(d-b+2)})\) at infinity.  For \(z=0\), every term in
+\eqref{lb:Laurent-identity} vanishes identically.
+\end{lemma}
+
+\begin{proof}
+Multiply \eqref{lb:Laurent-identity} by
+\((1+tz)t^{d+1-b}\).  Consecutive terms of the finite sum cancel,
+leaving exactly the numerator on the left.  If \(z\neq0\), the
+additional denominator \(1+tz\) gives one further power of
+\(t^{-1}\) at infinity.  If \(z=0\), the factor \(z^b\) vanishes
+because \(b\geq1\), as do all the other numerators.  Thus the
+identity and the remainder statement require no division by a node
+coordinate.
+\end{proof}
+
+\begin{lemma}
+\label{lb:H-nonsingular}
+For every \(i\) with \(\delta_i>0\), \(\det H_i(t)\) is a nonzero
+element of \(K\).
+\end{lemma}
+
+\begin{proof}
+Expand \eqref{lb:H} at \(t_i=\infty\), treating the other parameters
+as elements of the coefficient field \(\C(t_j:j\neq i)\).
+Apply \eqref{lb:Laurent-identity} separately to each node.  The sum is
+finite, and its zero-coordinate terms vanish identically, so the
+remainder estimate applies entrywise.  Every term with
+\(b_i<p\leq d_i\) has zero coefficient by \eqref{lb:moments} and
+\eqref{lb:truncation}.  The coefficient with \(p=b_i\) is
+\(\beta_i\bigotimes_{j\neq i}G_j(t_j)\).  Consequently
+\begin{equation}
+  H_i(t)
+   =(-1)^{d_i-b_i}\beta_i\,
+       t_i^{-(d_i-b_i+1)}
+          \bigotimes_{j\neq i}G_j(t_j)
+      +O\bigl(t_i^{-(d_i-b_i+2)}\bigr).
+  \label{lb:H-leading}
+\end{equation}
+This may equivalently be read as a formal Laurent expansion in
+\(t_i^{-1}\).  By Lemma~\ref{lb:U-gram}, its leading coefficient
+matrix is invertible.  The coefficient of
+\(t_i^{-(d_i-b_i+1)r_i}\) in \(\det H_i\) is therefore the nonzero
+determinant of that matrix.  In particular, \(\det H_i\) cannot be
+the zero rational function.  Each coordinate is treated separately;
+no common limiting path for the parameters is required.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:moment}]
+Choose one finite parameter vector on which every required block is
+nonsingular.  To justify that choice explicitly, put
+\[
+  D_i(t_i)=\prod_{\ell=1}^{n}(1+t_i z_{i,\ell}).
+\]
+For \(\delta_i>0\), the entries of \(D_iH_i\) are polynomials in
+all the parameters.  Hence
+\[
+  P_i(t):=D_i(t_i)^{r_i}\det H_i(t)
+\]
+is a nonzero polynomial by Lemma~\ref{lb:H-nonsingular}.  The product
+\[
+  \left(\prod_{i=1}^{k}D_i(t_i)\right)
+  \left(\prod_{i:\,\delta_i>0}P_i(t)\right)
+\]
+is nonzero.  Since \(\C\) is infinite, it is nonvanishing at some
+finite \(t\in\C^k\).  Fix such a choice.  All the vectors
+\eqref{lb:U}--\eqref{lb:V} and the pairing \eqref{lb:pairing} are
+then defined.  The Gram matrix of \(\mathcal U\) is invertible by
+Lemma~\ref{lb:U-gram}, and each nonempty \(\mathcal V_i\) has an
+invertible Gram matrix by Lemmas~\ref{lb:anti-triangular} and
+\ref{lb:H-nonsingular}.  Lemma~\ref{lb:orthogonality} makes their
+combined Gram matrix block diagonal and invertible.
+
+The combined list thus consists of
+\(Q+\sum_i\delta_iQ/q_i=N\) linearly independent vectors in
+\(\C^n\), proving \(n\geq N\).  No node was discarded or required
+to be distinct or to have nonzero coordinates.  If a moment formula
+initially contains zero weights, those terms may first be deleted.
+\end{proof}

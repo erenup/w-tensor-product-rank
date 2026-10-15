@@ -1,0 +1,367 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\hypersetup{pdftitle={The partially symmetric rank of products of binary monomials},pdfauthor={TBD}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Sym}{Sym}
+\newcommand{\Rk}{\mathrm{R}}
+\title{The partially symmetric rank\\of products of binary monomials}
+\author{TBD}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The known upper bound for products of generalized W tensors suggests a
+matching lower bound on every decomposition with the symmetric blocks
+fixed. We obtain it by normalizing coordinates, matching coefficients as
+moment conditions, and constructing a weighted bilinear Gram matrix of
+explicit test functions. Invertibility of this matrix forces the number
+of summands to be at least the number of test functions. Exact Laurent
+coefficients prove nondegeneracy in one finite choice of parameters,
+including for decompositions with repeated nodes and zero coordinates.
+More generally, for every $k\geq1$ and integers $a_i\geq b_i\geq1$, we prove
+that the complex partially symmetric rank is
+\[
+ \Rk\!\left(\prod_{i=1}^k x_i^{a_i}y_i^{b_i}\right)
+ =\prod_{i=1}^k(b_i+1)
+   +\sum_{i=1}^k(a_i-b_i)\prod_{j\ne i}(b_j+1).
+\]
+A finite-character construction supplies the matching upper bound.
+For generalized W tensors of orders $d_i\geq3$, the formula becomes
+$2^{k-1}(\sum_i d_i-2k+2)$, attaining the upper bound of
+Canino--Casarotti--Santarsiero. Three cubic W tensors have rank $20$,
+and three copies of $x^3y^2$ have rank $54$.
+\end{abstract}
+
+\section{Rank, the main result, and its context}\label{sec:intro}
+
+For $k\geq2$ and $d_i\geq3$, Canino--Casarotti--Santarsiero's
+construction gives the upper bound
+$M=2^{k-1}(\sum_i d_i-2k+2)$ for the fixed-block partially symmetric
+rank of $\prod_i x_i^{d_i-1}y_i$ \cite[Theorem~1.1]{CCS}.
+To prove the matching lower bound, discard zero summands from any
+proposed decomposition and let $r$ count the remaining terms.
+An invertible change of coordinates makes its factors affine, with their
+scales absorbed into nonzero weights. Matching every coefficient gives
+product-moment identities. By linearity these determine weighted
+evaluation on the polynomial space with coordinate degrees at most $d_i$.
+
+The proof constructs $M$ test functions in batches $\mathcal B_0,
+\mathcal B_1,\ldots,\mathcal B_k$, whose evaluations form an $r\times M$
+matrix $E$. With an auxiliary diagonal weight matrix $W$, their Gram
+matrix is $G=E^{\mathsf T}WE$. Once $G$ is invertible, $E$ has independent
+columns and $r\geq M$. The main step is to make every diagonal Gram block
+nondegenerate at one finite parameter vector; orthogonality alone is
+insufficient. The product-moment proof below establishes this step in
+the broader binary-monomial setting and retains its full parameter range.
+
+
+Let $k\geq1$, let $d_1,\ldots,d_k$ be positive integers, and identify
+\[
+ \bigotimes_{i=1}^k\Sym^{d_i}(\C^2)
+\]
+with the polynomials in disjoint pairs $(x_i,y_i)$ that have degree $d_i$
+in the $i$th pair. For a nonzero such polynomial $F$, its fixed-block
+partially symmetric rank $\Rk_{\mathbf d}(F)$ is the least $n$ such that
+\begin{equation}\label{eq:rank-definition}
+ F=\sum_{\ell=1}^n c_\ell
+        \prod_{i=1}^k (u_{i,\ell}x_i+v_{i,\ell}y_i)^{d_i},
+ \qquad c_\ell,u_{i,\ell},v_{i,\ell}\in\C.
+\end{equation}
+The degrees and the $k$ blocks remain fixed. Coefficients may be absorbed
+into a factor by extracting a complex $d_i$th root, so this definition
+agrees with the definition using sums of partially symmetric pure
+tensors without displayed scalar coefficients. Multiplication of $F$
+by a nonzero scalar also leaves its rank unchanged. We suppress the
+subscript $\mathbf d$ when the degrees are clear.
+
+\begin{theorem}\label{thm:main}
+For every integer $k\geq1$ and integers $a_i\geq b_i\geq1$, set
+$d_i=a_i+b_i$. Then, over $\C$,
+\begin{equation}\label{eq:main-rank}
+ \Rk_{\mathbf d}\!\left(\prod_{i=1}^k x_i^{a_i}y_i^{b_i}\right)
+ =N(\mathbf a,\mathbf b)
+ :=\prod_{i=1}^k(b_i+1)
+   +\sum_{i=1}^k(a_i-b_i)\prod_{j\ne i}(b_j+1).
+\end{equation}
+Empty products have value $1$. The lower bound holds for every finite
+decomposition of the form \eqref{eq:rank-definition}, without restrictions
+on the complex coefficients or support. The upper bound is realized by
+the explicit finite-character identity \eqref{eq:character-decomposition}.
+\end{theorem}
+
+The theorem concerns exact complex rank with fixed symmetric blocks.
+No assertion about real rank, border rank, cactus rank, unrestricted
+nonsymmetric rank, or rank after grouping modes from different blocks
+is included. The lower argument uses only finite decompositions and
+does not apply to limits of decompositions.
+
+For $d\geq3$, the generalized W tensor is
+\[
+ W_d=\sum_{j=1}^d e_1^{\otimes(j-1)}\otimes e_2
+                         \otimes e_1^{\otimes(d-j)}
+       \in\Sym^d(\C^2).
+\]
+Under the usual polynomial identification this is a nonzero scalar
+multiple of $x^{d-1}y$.
+
+\begin{corollary}\label{cor:W}
+For every $k\geq2$ and integers $d_i\geq3$, the partially symmetric
+rank of the product of generalized W tensors is
+\begin{equation}\label{eq:W-rank}
+ \Rk_{\mathbf d}(W_{d_1}\otimes\cdots\otimes W_{d_k})
+   =2^{k-1}\left(\sum_{i=1}^k d_i-2k+2\right).
+\end{equation}
+In particular $\Rk_{(3,3,3)}(W_3^{\otimes3})=20$ and
+$\Rk_{(3,\ldots,3)}(W_3^{\otimes k})=2^{k-1}(k+2)$.
+\end{corollary}
+
+\begin{proof}
+Take $a_i=d_i-1$ and $b_i=1$ in Theorem~\ref{thm:main}, and use
+invariance of rank under nonzero scalar multiplication.
+\end{proof}
+
+\input{sections/context}
+
+\paragraph{Related decomposition questions.}
+SOS tensor decompositions write a real homogeneous polynomial of even
+degree as a sum of squares of real homogeneous polynomials of half that
+degree; SOS-rank counts the smallest number of those squares
+\cite[Section~4]{CLQ}. Here the admissible terms are products of powers of complex linear forms
+in prescribed symmetric blocks. These are different decomposition
+problems, and their ranks are not identified. No SOS decomposition theorem
+is used in either bound.
+
+
+\subsection{The two constructions}
+
+The lower bound will be proved first for arbitrary finite product-moment
+formulas. The moments vanish above a prescribed degree $b_i$ in each
+coordinate, while the moment at degree $b_i$ is nonzero. There are
+$Q=\prod_i(b_i+1)$ basic evaluation vectors. For each coordinate an
+additional list contributes $(d_i-2b_i)Q/(b_i+1)$ vectors. In the
+original coordinates the corresponding Gram matrices can be singular,
+so orthogonality alone does not justify adding dimensions.
+
+We introduce parameters $t_i$ and replace the diagonal pairing weights
+$w_\ell$ by $w_\ell\prod_i(1+t_i z_{i,\ell})^{d_i}$. Suitable
+rational evaluation vectors remain orthogonal in distinct lists.
+Within each additional list, reversing block columns gives a triangular
+Gram matrix. Its diagonal block has an invertible leading Laurent
+coefficient. Each determinant is therefore a nonzero rational function,
+and one finite parameter vector avoids all its zeros and poles.
+
+For the upper bound, write $q_i=b_i+1$ and $\delta_i=a_i-b_i$.
+The column lattice of
+$A=\diag(q_1,\ldots,q_k)+\delta\mathbf1^T$ has index $N$ and meets
+$\prod_i[-a_i,b_i]$ only at the origin. Summing over the characters
+of $\Z^k/A\Z^k$ then selects exactly the desired monomial among all
+coefficients of a sum of partially symmetric powers. Both bounds are
+proved here; the tensor-rank results cited for context are not used
+as mathematical premises.
+
+\input{sections/lower_bound}
+
+\section{From decompositions to product moments}\label{sec:reduction}
+
+We now deduce the lower bound in Theorem~\ref{thm:main} from
+Theorem~\ref{thm:moment}. This reduction begins with an arbitrary
+decomposition; no affine-support hypothesis is imposed on it.
+
+\begin{proposition}\label{prop:lower}
+Under the hypotheses of Theorem~\ref{thm:main}, every decomposition
+of $F=\prod_i x_i^{a_i}y_i^{b_i}$ has at least
+$N(\mathbf a,\mathbf b)$ summands.
+\end{proposition}
+
+\begin{proof}
+Fix a decomposition \eqref{eq:rank-definition} of length $n$ and delete
+any zero summands. Thus every $c_\ell$ and every pair
+$(u_{i,\ell},v_{i,\ell})$ is nonzero. For each $i$, choose
+$\gamma_i\in\C$ so that
+\begin{equation}\label{eq:initial-chart}
+ u_{i,\ell}+\gamma_i v_{i,\ell}\ne0
+                    \qquad(1\leq\ell\leq n).
+\end{equation}
+If $v_{i,\ell}=0$, this condition is automatic; otherwise it excludes
+one value of $\gamma_i$. Only finitely many values are excluded, so
+the choice exists. Set
+\begin{equation}\label{eq:node-weight}
+ z_{i,\ell}=\frac{v_{i,\ell}}{u_{i,\ell}+\gamma_i v_{i,\ell}},
+ \qquad
+ w_\ell=c_\ell\prod_{i=1}^k
+                 (u_{i,\ell}+\gamma_i v_{i,\ell})^{d_i}.
+\end{equation}
+All weights are nonzero. Nodes may repeat, and $z_{i,\ell}$ is allowed
+to be zero.
+
+For $0\leq e_i\leq d_i$, apply the differential operator
+\[
+ \prod_{i=1}^k
+ (\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e_i}
+ \partial_{y_i}^{e_i}
+\]
+to the decomposition and divide by $\prod_i d_i!$. On its $\ell$th
+summand the result is $w_\ell\prod_i z_{i,\ell}^{e_i}$.
+On the target monomial the result factors over the blocks. The
+one-variable functionals obtained in this way satisfy
+\begin{equation}\label{eq:monomial-moments}
+ m_i(z_i^e)=
+ \begin{cases}
+ \displaystyle\frac{(d_i-e)!\,b_i!}{(b_i-e)!\,d_i!}
+                  \gamma_i^{b_i-e},&0\leq e\leq b_i,\\[6pt]
+ 0,&b_i<e\leq d_i.
+ \end{cases}
+\end{equation}
+Indeed, when $e\leq b_i$, differentiation by $\partial_{y_i}^e$
+first contributes $b_i!/(b_i-e)!$. In the remaining binomial expansion
+of $(\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e}$, only the
+term with $b_i-e$ derivatives in $y_i$ and $a_i$ derivatives in
+$x_i$ survives. Its value gives \eqref{eq:monomial-moments}.
+For $e>b_i$ the first differentiation already vanishes.
+
+Consequently the product-moment identities hold throughout the entire
+box $0\leq e_i\leq d_i$, and
+\[
+ \beta_i=m_i(z_i^{b_i})
+         =\frac{a_i!\,b_i!}{d_i!}
+         =\binom{d_i}{b_i}^{-1}\ne0.
+\]
+Because $a_i\geq b_i$, we have $d_i\geq2b_i$.
+Theorem~\ref{thm:moment} gives
+\[
+ n\geq\prod_i(b_i+1)
+       +\sum_i(d_i-2b_i)\prod_{j\ne i}(b_j+1)
+   =N(\mathbf a,\mathbf b),
+\]
+as required.
+\end{proof}
+
+The initial chart \eqref{eq:initial-chart} and the auxiliary parameters
+in the moment proof serve different purposes. The first makes an
+arbitrary finite decomposition affine. The second makes the Gram
+blocks nondegenerate. Both choices are made after fixing the
+decomposition, and both follow from explicit finite nonvanishing
+conditions. Neither is a genericity assumption on the decomposition.
+
+\input{sections/upper_bound}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:lower} bounds every decomposition below by
+$N(\mathbf a,\mathbf b)$. Proposition~\ref{prop:upper} supplies a
+decomposition with exactly this many summands.
+\end{proof}
+
+\section{Specializations and scope}\label{sec:specializations}
+
+For one block, \eqref{eq:main-rank} is $\Rk(x^ay^b)=a+1$ when
+$a\geq b\geq1$. For two blocks it becomes
+\begin{align*}
+ N&=(b_1+1)(b_2+1)+(a_1-b_1)(b_2+1)+(a_2-b_2)(b_1+1)\\
+  &=(a_1+1)(a_2+1)-(a_1-b_1)(a_2-b_2).
+\end{align*}
+These are the one-block and two-block overlaps described above.
+When all $a_i=b_i$, the additional moment lists are absent and the
+formula reduces to $N=\prod_i(b_i+1)$; the lattice matrix in the
+upper construction is then diagonal.
+
+Some immediate examples are recorded in Table~\ref{tab:examples}.
+They are consequences of the quantified theorem, not an interpolation
+from finitely many rank computations.
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Fixed-block tensor or polynomial & Complex partially symmetric rank\\
+\midrule
+$x^ay^b$, $a\geq b\geq1$ & $a+1$\\
+$\prod_i x_i^{b_i}y_i^{b_i}$ & $\prod_i(b_i+1)$\\
+$W_3^{\otimes k}$, $k\geq2$ & $2^{k-1}(k+2)$\\
+$W_3\otimes W_3\otimes W_3$ & $20$\\
+$(x^3y^2)^{\otimes3}$ & $54$\\
+\bottomrule
+\end{tabular}
+\caption{Special cases of Theorem~\ref{thm:main}. Each tensor power
+keeps its displayed factors as symmetric blocks.}\label{tab:examples}
+\end{table}
+
+For the last example $q_i=3$ and $\delta_i=1$, so
+$N=3^3+3\cdot3^2=54$. Its lattice matrix has diagonal entries $4$
+and off-diagonal entries $1$, and \eqref{eq:character-decomposition}
+provides the $54$ summands. For the cubic W triple the corresponding
+matrix has diagonal entries $3$ and off-diagonal entries $1$, and
+the number of characters is $20$.
+
+The hypothesis $b_i\geq1$ is essential to the theorem as stated.
+It is used when the Laurent remainder is evaluated at a zero node.
+The formula would already be false for the single pure power $x^a$
+with $b=0$: its rank is $1$, whereas the right-hand side would be
+$a+1$ for $a\geq1$. Such factors are excluded from the statement.
+
+All Gram forms in the proof are symmetric bilinear forms over $\C$.
+No positive weights or Hermitian positivity are assumed. Invertibility
+of every diagonal Gram block, established before dimensions are added,
+is what prevents isotropic or radical subspaces from invalidating the
+count. The Laurent expansions certify nonzero rational functions;
+the final argument evaluates those functions at one finite point.
+No limiting decomposition enters the proof.
+
+\appendix
+\section{Exact finite checks}\label{app:checks}
+
+The proof above establishes the theorem for all its stated parameters
+without a computer calculation. Two finite sets of exact checks provide
+additional arithmetic checks on its formulas. Their scope is described
+here to distinguish them from the universal proof.
+
+For the W-state specialization, rational calculations in degrees $2$
+through $9$ check the univariate moment and Gram identities. A
+calculation over $\Q(\zeta_{10})$ verifies all coefficients of a
+$20$-term cubic triple decomposition and an invertible $20\times20$
+Gram matrix at an asymmetric finite parameter vector. Rejection
+checks change a coefficient, choose a pole, and impose an incorrect
+nondegeneracy assertion at a symmetric chart. The last check rejects
+that chart, while leaving the validity of the decomposition intact.
+
+For the general binary-monomial construction, integer, rational, and
+cyclotomic arithmetic verifies all coefficients in eight explicit
+character decompositions, including the $54$-term example, unequal
+degrees, a balanced factor, four blocks, and the one-block, two-block,
+and cubic-W overlaps. Three rational cubatures check their full Gram
+matrices directly, with zero and repeated nodes included. Separate
+identities check the Laurent remainder at positive, negative, and
+zero rational nodes. Eight rejection checks alter, respectively, the
+rank count, lattice orientation, character list, character value,
+target phase, cubature weight, Gram-vector list, and remainder sign.
+
+These finite computations use no floating-point rank tests. They
+cannot replace the finite-chart existence proof, the all-parameter
+lattice argument, or the reduction of an arbitrary decomposition to
+moments. The mathematical conclusions do not rely on an assumption
+that the checked examples exhaust the possible supports.
+
+\section*{Acknowledgements}
+TBD
+
+\input{bibliography}
+\end{document}

@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "source_hashes": {
+    "TR29.lean": "cf09721728f086829d6a4b20c47c83da18d5c53ddf72cf8be03a01a3cba93295",
+    "TR29/Avoidance.lean": "23a0b14f0b0cf4019feb6e4c14b76f2c578726d2aa25be42e4da25cef8b9e474",
+    "TR29/Blocks.lean": "09052468edc2dd0346c02e523086187f3dca183229c76dd322bcca9eee151ac3",
+    "TR29/Count.lean": "f97a16a431e4a554909fb3f8d18dd886be368ae161f80b640a9987e5b48c034b",
+    "TR29/Definitions.lean": "f1812f5918b0034be999ecaab5634aaf3a77c93a53d1f7efc4751e97435a8585",
+    "TR29/Proofs.lean": "5db5aedfab990deff7566eee185679c72688e65742c1ecdb7a90a38288d9db61",
+    "TR29/Series.lean": "6586f798a6be7a8b2d89496f7d11a13d6b0676fc06f17e218451676b76a23aa8",
+    "TR29/Statement.lean": "52d0b4a677dcb78bf68f085be728b9cd9ad6f4969cf6b1a029da6cbbebd8818a",
+    "TR29/Univariate.lean": "f57c8b11e641f0012378b23731ac6ea8e0f9df8db6eb319c754b9b323b1df78c"
+  }
+}
