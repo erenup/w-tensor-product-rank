@@ -10,15 +10,15 @@ weighted bilinear Gram matrix, and its invertibility gives the lower
 count. The proof includes block nondegeneracy and one simultaneous
 finite parameter choice, allowing repeated nodes and zero coordinates.
 
-For every $k\geq2$ and $d_i\geq3$, over the complex numbers,
+For every $k\geq2$ and $`d_i\geq3`$, over the complex numbers,
 
 ```math
 R_{(d_1,\ldots,d_k)}(W_{d_1}\otimes\cdots\otimes W_{d_k})
 =2^{k-1}\left(\sum_i d_i-2k+2\right).
 ```
 
-More generally, for every $k\geq1$ and integers $a_i\geq b_i\geq1$,
-with the symmetric blocks of degrees $a_i+b_i$ fixed,
+More generally, for every $k\geq1$ and integers $`a_i\geq b_i\geq1`$,
+with the symmetric blocks of degrees $`a_i+b_i`$ fixed,
 
 ```math
 R\!\left(\prod_i x_i^{a_i}y_i^{b_i}\right)
@@ -28,7 +28,7 @@ R\!\left(\prod_i x_i^{a_i}y_i^{b_i}\right)
 Empty products equal one. The paper supplies the full product-moment
 lower bound and the matching finite-character construction. It includes
 the known one- and two-block overlaps and the balanced-exponent endpoint.
-Pure-power factors with $b_i=0$ are excluded. Real, border, cactus,
+Pure-power factors with $`b_i=0`$ are excluded. Real, border, cactus,
 unrestricted nonsymmetric and regrouped-mode ranks are outside the
 statements. SOS decompositions are discussed only as related background
 with different admissible terms.

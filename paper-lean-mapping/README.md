@@ -21,8 +21,8 @@ linear forms, with the symmetric blocks fixed. Delete zero summands,
 and let $r$ be the number remaining. Choose an invertible coordinate
 change so that all remaining factors
 have an affine normalization. The scales become nonzero weights
-$w_\ell$, and the normalized coefficients become nodes
-$z_\ell\in\mathbb C^k$. Nodes may repeat and their coordinates may
+$`w_\ell`$, and the normalized coefficients become nodes
+$`z_\ell\in\mathbb C^k`$. Nodes may repeat and their coordinates may
 vanish. This normalization imposes no restriction on the original
 decomposition.
 
@@ -35,23 +35,23 @@ Matching every coefficient gives the product-moment identities
 ```
 
 By linearity, these identities describe a polynomial functional on
-the space whose degree in each coordinate $z_i$ is at most $d_i$.
+the space whose degree in each coordinate $`z_i`$ is at most $`d_i`$.
 They do not prescribe moments outside that box. For the general
 binary-monomial theorem, the coordinate moments vanish above degree
-$b_i$, while $m_i(z_i^{b_i})$ is nonzero. The assumptions are
-$b_i\geq1$ and $d_i\geq2b_i$.
+$`b_i`$, while $`m_i(z_i^{b_i})`$ is nonzero. The assumptions are
+$`b_i\geq1`$ and $`d_i\geq2b_i`$.
 
 ## Build the weighted Gram matrix
 
-Introduce auxiliary parameters $t_i$ and the diagonal bilinear weights
+Introduce auxiliary parameters $`t_i`$ and the diagonal bilinear weights
 
 ```math
 w_\ell(t)=w_\ell\prod_i(1+t_i z_{i,\ell})^{d_i}.
 ```
 
-The paper's evaluation lists $\mathcal U,\mathcal V_1,\ldots,
-\mathcal V_k$ are the batches $\mathcal B_0,\mathcal B_1,\ldots,
-\mathcal B_k$ in the introductory Gram-matrix description. In the
+The paper's evaluation lists $`\mathcal U,\mathcal V_1,\ldots,
+\mathcal V_k`$ are the batches $`\mathcal B_0,\mathcal B_1,\ldots,
+\mathcal B_k`$ in the introductory Gram-matrix description. In the
 W case they contain $M$ functions altogether. Their evaluations are
 the columns of an $r$-by-$M$ matrix $E$. With $W$ the diagonal matrix
 of the weights above, their combined Gram matrix is
@@ -67,8 +67,8 @@ each diagonal Gram block must also be nonsingular.
 
 The basic block has an explicit nonzero determinant. Reversing the
 block columns of an additional batch gives a triangular matrix whose
-diagonal blocks are $H_i$. Exact Laurent coefficients show that each
-$\det H_i$ is a nonzero rational function. After clearing denominators,
+diagonal blocks are $`H_i`$. Exact Laurent coefficients show that each
+$`\det H_i`$ is a nonzero rational function. After clearing denominators,
 one finite parameter vector avoids every determinant zero and every
 pole simultaneously. Separate parameter choices for different blocks
 would not suffice.
@@ -80,17 +80,17 @@ W-tensor equality. No limiting decomposition is used.
 ## The binary-monomial extension
 
 The paper proves the more general theorem. For every $k\geq1$ and
-$a_i\geq b_i\geq1$, with $d_i=a_i+b_i$, the fixed-block complex rank is
+$`a_i\geq b_i\geq1`$, with $`d_i=a_i+b_i`$, the fixed-block complex rank is
 
 ```math
 N=\prod_i(b_i+1)
   +\sum_i(a_i-b_i)\prod_{j\ne i}(b_j+1).
 ```
 
-The same moment argument uses $Q=\prod_i(b_i+1)$ basic functions and
-$(d_i-2b_i)Q/(b_i+1)$ functions in batch $i$. Balanced factors have
+The same moment argument uses $`Q=\prod_i(b_i+1)`$ basic functions and
+$`(d_i-2b_i)Q/(b_i+1)`$ functions in batch $i$. Balanced factors have
 empty additional batches. A finite-character construction supplies
-the matching general upper bound. The W specialization is $b_i=1$;
+the matching general upper bound. The W specialization is $`b_i=1`$;
 the Lean numerical target specifically covers that block count.
 
 All statements concern exact complex rank with the displayed symmetric
@@ -113,7 +113,7 @@ conditional W-block numerical count, and simultaneous finite chart
 avoidance. Their conjunction is `TR29.core_theorems`.
 
 The specific multivariate evaluation vectors and their cancellations
-are paper only. So are the identification of each rational $H_i$ with
+are paper only. So are the identification of each rational $`H_i`$ with
 its formal series, the nonzero determinant-numerator bridge, reduction
 of an arbitrary tensor decomposition to moments, the full binary count,
 and the general finite-character upper construction. The chart theorem

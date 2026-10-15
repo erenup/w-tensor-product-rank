@@ -11,7 +11,7 @@ The symmetric blocks stay fixed throughout.
 
 ## From the known upper bound to the exact rank
 
-For every integer $k\geq2$ and all integers $d_i\geq3$, over the complex
+For every integer $k\geq2$ and all integers $`d_i\geq3`$, over the complex
 numbers,
 
 ```math
@@ -19,7 +19,7 @@ R_{(d_1,\ldots,d_k)}(W_{d_1}\otimes\cdots\otimes W_{d_k})
 =2^{k-1}\left(\sum_{i=1}^k d_i-2k+2\right)=M.
 ```
 
-Here $W_d$ is represented, up to a nonzero scalar, by $x^{d-1}y$.
+Here $`W_d`$ is represented, up to a nonzero scalar, by $x^{d-1}y$.
 The rank counts the least number of terms in
 
 ```math
@@ -58,8 +58,8 @@ this chain and distinguishes polynomial moments from rational evaluations.
 
 ## The full binary-monomial theorem
 
-For every integer $k\geq1$ and integers $a_i\geq b_i\geq1$, set
-$d_i=a_i+b_i$. With these $k$ symmetric blocks fixed,
+For every integer $k\geq1$ and integers $`a_i\geq b_i\geq1`$, set
+$`d_i=a_i+b_i`$. With these $k$ symmetric blocks fixed,
 
 ```math
 R_{(d_1,\ldots,d_k)}\!\left(\prod_{i=1}^k x_i^{a_i}y_i^{b_i}\right)
@@ -75,7 +75,7 @@ exponents and the known one- and two-block cases. Those overlaps, and the
 W specialization, are recorded in the [literature discussion](families/monomial-products/proofs/LITERATURE.md).
 
 These are exact complex ranks for the prescribed blocks. Pure-power
-factors $b_i=0$ are excluded. The theorems make no claim about real,
+factors $`b_i=0`$ are excluded. The theorems make no claim about real,
 border, cactus, unrestricted nonsymmetric, or regrouped-mode rank.
 SOS tensor decompositions use squares of real homogeneous polynomials,
 which are different admissible terms; their ranks are not identified

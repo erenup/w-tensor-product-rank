@@ -24,15 +24,15 @@ definitions or remarks. The appendix is Section A.
 ## 1. Rank, the main result, and its context
 
 Theorem 1.1 proves the fixed-block complex rank formula for every
-$k\geq1$ and $a_i\geq b_i\geq1$. Corollary 1.2 specializes it to
-products of generalized W tensors with $k\geq2$ and $d_i\geq3$.
+$k\geq1$ and $`a_i\geq b_i\geq1`$. Corollary 1.2 specializes it to
+products of generalized W tensors with $k\geq2$ and $`d_i\geq3`$.
 Neither complete tensor statement is a Lean theorem.
 
 The target `TR29.tr29_gram_lower_bound` in
 [Count.lean](../lean/TR29/Count.lean) is a conditional part of the lower
-argument. For $k\geq1$ and $d_i\geq2$, it assumes literal zero
+argument. For $k\geq1$ and $`d_i\geq2`$, it assumes literal zero
 cross-block pairings and nonsingular within-block Gram matrices of sizes
-$2^k$ and $(d_i-2)2^{k-1}$. It then derives
+$2^k$ and $`(d_i-2)2^{k-1}`$. It then derives
 
 ```math
 n\geq2^{k-1}\left(\sum_i d_i-2k+2\right).
@@ -52,8 +52,8 @@ identity and chart, not a lower bound for all possible decompositions.
 ## 2. A product-moment lower bound
 
 Theorem 2.1 starts with moments on the entire coordinate degree box,
-with nonzero degree-$b_i$ moments and vanishing subsequent moments up to
-$d_i$. It assumes $b_i\geq1$ and $d_i\geq2b_i$. Nodes may repeat and
+with nonzero degree-$`b_i`$ moments and vanishing subsequent moments up to
+$`d_i`$. It assumes $`b_i\geq1`$ and $`d_i\geq2b_i`$. Nodes may repeat and
 their coordinates may vanish; no positivity is assumed. The complete
 theorem, including construction and verification of its specific
 multivariate vectors, is paper only.
@@ -105,7 +105,7 @@ including zero nodes without division by a node coordinate. Selected
 rational instances are checked by `check_exact.py:lower`. The universal
 finite identity itself is paper only.
 
-Lemma 2.6 proves that each particular rational matrix $H_i$ has nonzero
+Lemma 2.6 proves that each particular rational matrix $`H_i`$ has nonzero
 determinant. Two targets in [Series.lean](../lean/TR29/Series.lean)
 support its formal-series mechanism:
 
@@ -120,7 +120,7 @@ It applies over rational-function coefficient fields in the other
 parameters. Its determinant conclusion is derived, not assumed.
 At a zero node, the positive node power annihilates the contribution.
 
-The identification of each specific rational $H_i$ with this formal
+The identification of each specific rational $`H_i`$ with this formal
 series, verification of its matrix-moment hypotheses, transfer back
 to the rational determinant and construction of its nonzero numerator
 polynomial remain in the paper. Formal nonvanishing must not be
@@ -183,7 +183,7 @@ prove the lattice or character theorem for all parameters.
 
 The one-block and two-block formulas, balanced case, cubic-W rank 20
 and rank 54 of the triple product of $x^3y^2$ follow from the complete
-paper theorem. The theorem excludes $b_i=0$. The Gram form is bilinear
+paper theorem. The theorem excludes $`b_i=0`$. The Gram form is bilinear
 over the complex numbers; no positivity or Hermitian argument is used.
 Formal-series reasoning certifies nonzero rational functions before a
 single finite evaluation. It does not introduce a border-rank or
