@@ -1,0 +1,71 @@
+\section{Introduction and main result}\label{sec:intro}
+
+For $\bd=(d_1,\ldots,d_k)$, consider the multihomogeneous polynomial
+\begin{equation}\label{eq:target}
+F(x,y)=\prod_{i=1}^k x_i^{d_i-1}y_i.
+\end{equation}
+The pair $(x_i,y_i)$ represents the $i$th symmetric tensor block, of order
+$d_i$. Thus $F$ represents a product of $k$ generalized W-states, up to a
+nonzero normalization scalar. In this polynomial description, a rank-one
+term with respect to the prescribed blocks is a product
+$\prod_i(a_i x_i+b_i y_i)^{d_i}$.
+
+\begin{definition}[Partially symmetric rank]
+The partially symmetric rank $R_{\bd}(F)$ is the least integer $r$ for which
+there are complex coefficients $c_\ell,a_{i\ell},b_{i\ell}$ satisfying
+\begin{equation}\label{eq:decomposition}
+F(x,y)=\sum_{\ell=1}^r c_\ell
+\prod_{i=1}^k(a_{i\ell}x_i+b_{i\ell}y_i)^{d_i}.
+\end{equation}
+The blocks $(x_i,y_i)$ and their degrees $d_i$ are fixed throughout.
+\end{definition}
+
+Canino, Casarotti and Santarsiero~\cite[Theorem~1.1]{CCS2025} give an
+explicit decomposition proving the general upper bound
+\begin{equation}\label{eq:upper}
+R_{\bd}(F)\le M,
+\qquad M:=2^{k-1}\left(\sum_{i=1}^k d_i-2k+2\right),
+\qquad k\ge2,\quad d_i\ge3.
+\end{equation}
+Our contribution is the matching lower bound for every decomposition
+of the form \eqref{eq:decomposition}, without any restriction on its
+support. This is the partially symmetric rank question in problem
+TR-29 of the Open Problems in Numerical Linear Algebra catalogue
+\cite{TR29}.
+
+\begin{theorem}[Exact partially symmetric rank]\label{thm:main}
+Let $k\ge2$ and $d_i\ge3$ for every $i$. Over $\C$,
+\begin{equation}\label{eq:main}
+R_{\bd}\!\left(\prod_{i=1}^k x_i^{d_i-1}y_i\right)
+=2^{k-1}\left(\sum_{i=1}^k d_i-2k+2\right).
+\end{equation}
+\end{theorem}
+
+The proof of the lower bound is developed in Sections~\ref{sec:coordinates}--\ref{sec:tests}
+and completed at the end of Section~\ref{sec:tests}. The upper bound is
+\eqref{eq:upper}.
+
+\begin{example}[Three cubic factors]\label{ex:rank20}
+For $F=x_1^2y_1x_2^2y_2x_3^2y_3$, the theorem gives
+$R_{(3,3,3)}(F)=20$. More generally,
+$R_{(3,\ldots,3)}(F)=2^{k-1}(k+2)$.
+\end{example}
+
+The proof follows a concrete sequence. An arbitrary $r$-term
+decomposition gives $r$ weighted points after a change of coordinates.
+Coefficient matching determines their moments. We then construct $M$
+test functions and prove that their evaluation vectors are linearly
+independent by showing that a weighted Gram matrix is invertible.
+Consequently $r\ge M$. The test functions and the matrix blocks are given
+explicitly in Section~\ref{sec:tests}; the longer coefficient calculations
+are collected in the appendices.
+
+All ranks in \Cref{thm:main} refer to the prescribed partially symmetric
+blocks. The argument does not assert the same lower bound for ordinary
+tensor rank or border rank. All pairings below are complex bilinear,
+using transpose rather than conjugate transpose.
+
+Section~\ref{sec:binary} extends the lower-bound argument to all
+products of binary monomials $\prod_i x_i^{a_i}y_i^{b_i}$ with
+$a_i\ge b_i\ge1$ and determines their exact partially symmetric rank,
+together with a matching explicit decomposition.

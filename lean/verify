@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Check the source audit in both Python modes, then rebuild the Lean core."""
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+
+def normalized_diagnostics(result):
+    """Only unittest's elapsed duration is nondeterministic."""
+    stderr, count = re.subn(
+        rb"Ran (\d+) tests in [0-9.]+s", rb"Ran \1 tests in <time>s", result.stderr
+    )
+    if count != 1:
+        raise SystemExit("FAIL: missing or repeated audit test summary")
+    return result.stdout, stderr
+
+
+def main():
+    if len(sys.argv) != 1:
+        raise SystemExit("FAIL: usage: lean/verify")
+    root = Path(__file__).resolve().parent
+    commands = [
+        [sys.executable, "-B", "audit/test_verify.py"],
+        [sys.executable, "-O", "-B", "audit/test_verify.py"],
+    ]
+    results = [subprocess.run(command, cwd=root, capture_output=True, check=False)
+               for command in commands]
+    for result in results:
+        if result.returncode != 0:
+            sys.stdout.buffer.write(result.stdout)
+            sys.stderr.buffer.write(result.stderr)
+            raise SystemExit("FAIL: pre-build audit controls failed")
+    normal = normalized_diagnostics(results[0])
+    if normal != normalized_diagnostics(results[1]):
+        raise SystemExit("FAIL: Python modes disagree on pre-build audit controls")
+    sys.stdout.buffer.write(normal[0])
+    sys.stderr.buffer.write(normal[1])
+    sys.stdout.flush()
+    sys.stderr.flush()
+    print("PASS: pre-build audit controls agree under Python optimization", flush=True)
+    result = subprocess.run([sys.executable, "-B", "audit/verify.py"], cwd=root, check=False)
+    if result.returncode != 0:
+        raise SystemExit("FAIL: Lean audit failed")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        raise SystemExit("FAIL: execution error: " + type(error).__name__)

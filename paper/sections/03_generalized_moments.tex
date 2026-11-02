@@ -1,0 +1,37 @@
+\section{Generalized moment conditions}\label{sec:generalized}
+
+Let $\cP_{\bd}:=\{P\in\C[Z_1,\ldots,Z_k]:\deg_{Z_i}P\le d_i
+\text{ for all }i\}$. Define the weighted evaluation functional
+\begin{equation}\label{eq:L}
+L(P):=\sum_{\ell=1}^r w_\ell P(z_\ell),
+\qquad P\in\cP_{\bd}.
+\end{equation}
+For each $i$, let $L_i$ be the linear functional on univariate
+polynomials of degree at most $d_i$ determined by $L_i(Z_i^e)=m_i(e)$.
+
+\begin{lemma}[Generalized moment conditions]\label{lem:generalized}
+The moment conditions \eqref{eq:moments} are equivalent to
+\begin{equation}\label{eq:generalized}
+L(P)=\sum_e p_e\prod_{i=1}^k m_i(e_i)
+\quad\text{for every }P(Z)=\sum_e p_e\prod_{i=1}^k Z_i^{e_i}
+\in\cP_{\bd}.
+\end{equation}
+In particular, for $P(Z)=\prod_iP_i(Z_i)$ with $\deg P_i\le d_i$,
+\begin{equation}\label{eq:product}
+L\!\left(\prod_{i=1}^kP_i(Z_i)\right)=\prod_{i=1}^kL_i(P_i).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand $P$ in the monomial basis and apply \eqref{eq:moments} term by
+term. Conversely, taking $P(Z)=\prod_iZ_i^{e_i}$ in
+\eqref{eq:generalized} recovers each moment condition. Expanding the
+univariate factors gives \eqref{eq:product}.
+\end{proof}
+
+Thus the normalized decomposition, the monomial moment conditions,
+and the generalized moment conditions are equivalent descriptions
+of the same identity. Formula \eqref{eq:generalized} determines $L(P)$
+from the target polynomial whenever $P$ lies in the specified degree
+range. We also use $L(R)=\sum_\ell w_\ell R(z_\ell)$ for rational
+functions $R$ defined at every point, but \eqref{eq:generalized} does
+not directly apply to such functions.

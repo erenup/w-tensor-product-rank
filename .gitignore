@@ -1,0 +1,14 @@
+# Dependency caches and generated build files
+.lake/
+__pycache__/
+*.py[cod]
+.venv/
+paper/build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz

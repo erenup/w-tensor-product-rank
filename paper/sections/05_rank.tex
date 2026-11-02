@@ -1,0 +1,24 @@
+\section{From Gram invertibility to a rank lower bound}\label{sec:rank}
+
+The matrix $\cG$ is the weighted bilinear Gram matrix of the evaluation
+vectors. Its invertibility gives the required lower bound on the
+number of decomposition terms.
+
+\begin{lemma}[The dimension bound]\label{lem:dimension}
+For the matrices in \Cref{lem:gram},
+\begin{equation}\label{eq:dimension}
+\cG\text{ invertible}
+\quad\Longrightarrow\quad \rank E=M
+\quad\Longrightarrow\quad r\ge M.
+\end{equation}
+\end{lemma}
+\begin{proof}
+If $Ec=0$, then $\cG c=E^{\mathsf T}WEc=0$.
+Invertibility of $\cG$ gives $c=0$, so the $M$ columns of $E$ are
+linearly independent in $\C^r$.
+\end{proof}
+
+This implication requires neither a positive weight matrix nor a
+Hermitian inner product. It remains to choose the $M$ test functions
+and prove that their Gram matrix is invertible for at least one
+admissible finite parameter vector $t$.

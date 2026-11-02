@@ -1,0 +1,38 @@
+\section{Coefficient matching and moment conditions}\label{sec:moments}
+
+\begin{lemma}[Moment conditions]\label{lem:moments}
+The normalized identity \eqref{eq:normalized} is equivalent to
+\begin{equation}\label{eq:moments}
+\sum_{\ell=1}^r w_\ell\prod_{i=1}^k z_{i\ell}^{e_i}
+=\prod_{i=1}^k m_i(e_i),
+\qquad 0\le e_i\le d_i,
+\end{equation}
+where
+\begin{equation}\label{eq:mi}
+m_i(e)=
+\begin{cases}
+\gamma_i,&e=0,\\
+\beta_i:=1/d_i,&e=1,\\
+0,&2\le e\le d_i.
+\end{cases}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Compare the coefficients of $\prod_iX_i^{d_i-e_i}Y_i^{e_i}$ on both
+sides of \eqref{eq:normalized} and divide both by
+$\prod_i\binom{d_i}{e_i}$. On the right, the factor
+$(X_i+z_{i\ell}Y_i)^{d_i}$ contributes $\binom{d_i}{e_i}z_{i\ell}^{e_i}$.
+The coefficient contributed by the $i$th factor on the left is
+$\gamma_i$ when $e_i=0$, is $1$ when $e_i=1$, and is zero otherwise;
+after division by $\binom{d_i}{e_i}$ these are $\gamma_i$,
+$\beta_i=1/d_i$ and $0$.
+This gives \eqref{eq:moments}--\eqref{eq:mi}.
+Conversely, these identities match every coefficient of the two
+multihomogeneous polynomials, so they imply \eqref{eq:normalized}.
+\end{proof}
+
+The term \emph{moment} refers to the weighted monomial evaluations on
+the left of \eqref{eq:moments}. The weights are complex; they are not
+assumed positive or normalized to sum to one. In particular, the
+moment conditions retain all the information in the normalized
+polynomial identity, rather than providing only necessary tests.

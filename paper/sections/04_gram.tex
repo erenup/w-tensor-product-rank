@@ -1,0 +1,63 @@
+\section{Constructing the weighted Gram matrix}\label{sec:gram}
+
+We now select a family of expressions to which weighted evaluation
+will be applied. Let $t=(t_1,\ldots,t_k)\in\C^k$ satisfy
+$1+t_i z_{i\ell}\ne0$ for every $i,\ell$ (we call such $t$
+admissible), and set
+\begin{equation}\label{eq:Ht}
+h_i(Z_i):=1+t_iZ_i,
+\qquad H_t(Z):=\prod_{i=1}^k h_i(Z_i)^{d_i}.
+\end{equation}
+Choose $M$ rational test functions $\phi_1,\ldots,\phi_M$ defined
+at the points $z_\ell$. Their specific choice is given in
+Section~\ref{sec:tests}. For each $a,b=1,\ldots,M$, put
+\begin{equation}\label{eq:Pab}
+P_{ab}(Z):=H_t(Z)\phi_a(Z)\phi_b(Z),
+\end{equation}
+and define the Gram coefficient
+\begin{equation}\label{eq:Gab}
+\cG_{ab}:=L(P_{ab})
+=\sum_{\ell=1}^r w_\ell H_t(z_\ell)
+\phi_a(z_\ell)\phi_b(z_\ell).
+\end{equation}
+If $P_{ab}\in\cP_{\bd}$, this coefficient can be evaluated directly
+by \eqref{eq:generalized}. Among the entries outside $\cP_{\bd}$, only those with $s+s'=d_i+1$ in
+\Cref{lem:anti} are needed; they are
+handled by an exact rational identity in Appendix~\ref{app:laurent}.
+Entries with $s+s'\ge d_i+2$ are never evaluated.
+
+\begin{lemma}[Gram factorization]\label{lem:gram}
+The matrix $\cG=(\cG_{ab})_{a,b=1}^M$ satisfies
+\begin{equation}\label{eq:factorization}
+\cG=E^{\mathsf T}WE,
+\end{equation}
+where
+\begin{equation}\label{eq:E}
+E=
+\begin{pmatrix}
+\phi_1(z_1)&\phi_2(z_1)&\cdots&\phi_M(z_1)\\
+\phi_1(z_2)&\phi_2(z_2)&\cdots&\phi_M(z_2)\\
+\vdots&\vdots&&\vdots\\
+\phi_1(z_r)&\phi_2(z_r)&\cdots&\phi_M(z_r)
+\end{pmatrix}\in\C^{r\times M},
+\end{equation}
+and
+\begin{equation}\label{eq:W}
+W=
+\begin{pmatrix}
+w_1H_t(z_1)&0&\cdots&0\\
+0&w_2H_t(z_2)&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&w_rH_t(z_r)
+\end{pmatrix}\in\C^{r\times r}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The $(a,b)$ entry of $E^{\mathsf T}WE$ is exactly the sum in
+\eqref{eq:Gab}.
+\end{proof}
+
+Each column of $E$ is the evaluation vector
+$\ev(\phi_a)=(\phi_a(z_1),\ldots,\phi_a(z_r))^{\mathsf T}$.
+The indices $a$ and $b$ select two functions from the same list.
+They do not refer to two different types of test.

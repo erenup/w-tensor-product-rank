@@ -1,0 +1,98 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{geometry}
+\geometry{a4paper,total={170mm,257mm},left=20mm,top=20mm}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb,mathrsfs,natbib,array,booktabs}
+\setcitestyle{numbers,comma,square}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={The Exact Partially Symmetric Rank of Products of W-States},pdfauthor={Wenqi Zhu; Ping Nie}}
+\usepackage{cleveref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[1]
+\newcommand{\C}{\mathbb C}
+\newcommand{\bd}{\mathbf d}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cB}{\mathscr B}
+\newcommand{\ev}{\operatorname{ev}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+\title{The Exact Partially Symmetric Rank of Products of W-States\\[2pt]\large A proof via moment conditions and weighted Gram matrices}
+\author{%
+Wenqi Zhu\thanks{Corresponding author.}\\
+{\small Mathematical Institute, Woodstock Road, University of Oxford,}\\
+{\small Oxford, UK, OX2 6GG}\\
+{\small\texttt{wenqi.zhu@maths.ox.ac.uk}}\\[1ex]
+Ping Nie\\
+{\small David R. Cheriton School of Computer Science, University of Waterloo}\\
+{\small\texttt{ping.nie@uwaterloo.ca}}}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study the minimum number of products of powers of binary linear forms
+needed to express $\prod_{i=1}^k x_i^{d_i-1}y_i$.
+For $k\ge2$ and $d_i\ge3$, we prove that this number is
+$2^{k-1}(\sum_i d_i-2k+2)$, matching the upper bound of
+Canino, Casarotti and Santarsiero. The lower bound starts from an arbitrary
+complex decomposition. A change of coordinates converts its coefficients
+into weighted points satisfying product moment conditions. We construct
+rational test functions whose evaluation vectors have a block diagonal
+weighted Gram matrix. Its blocks are nondegenerate at one finite
+choice of auxiliary parameters, so the number of decomposition terms is
+at least the number of test functions. The argument allows repeated points
+and zero coordinates and uses no positivity assumption.
+We also determine the exact partially symmetric rank of every product of
+binary monomials $x_i^{a_i}y_i^{b_i}$ with $a_i\ge b_i\ge1$, with a
+matching explicit decomposition.
+\end{abstract}
+
+\input{sections/00_introduction}
+\input{sections/01_coordinates}
+\input{sections/02_moments}
+\input{sections/03_generalized_moments}
+\input{sections/04_gram}
+\input{sections/05_rank}
+\input{sections/06_test_functions}
+\input{sections/07_binary_monomials}
+\appendix
+\normalsize\renewcommand{\baselinestretch}{1.15}\selectfont
+\setlength{\abovedisplayskip}{4pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{4pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{0pt plus 2pt}
+\setlength{\belowdisplayshortskip}{3pt plus 2pt minus 1pt}
+\input{appendices/A_block_entries}
+\input{appendices/B_laurent}
+\section*{Statements and Declarations}
+\paragraph{Funding.}
+The research of Wenqi Zhu was supported by the Engineering and Physical
+Sciences Research Council under grant EP/Y028872/1, \emph{Mathematical
+Foundations of Intelligence: An ``Erlangen Programme'' for AI}.
+
+\paragraph{Competing interests.}
+The authors have no competing interests to declare that are relevant to
+the content of this article.
+
+\paragraph{Data availability.}
+The exact verification scripts and Lean~4 files accompanying
+this paper are available at
+\url{https://github.com/erenup/w-tensor-product-rank}.
+
+\paragraph{Use of generative AI and AI-assisted technologies.}
+During the preparation of this work, the authors used AI tools (Codex and Claude Code) to generate candidate constructions and code, perform computations, draft mathematical arguments, and improve the readability of the text. After using these
+tools, the authors reviewed and edited the content as needed and take full
+responsibility for the content of the publication. The lower-bound argument for Theorem~\ref{thm:main} is a complete written proof; finite instances of its coefficient identities were additionally checked in exact arithmetic, and a Lean~4 formalization covers six of its algebraic ingredients and its one-coordinate case under explicit hypotheses, as stated in the repository above, while the test functions, the cross-block cancellations, the identification of each block $H_i$ with its formal expansion and the reduction to moments are proved in the text. Section~\ref{sec:binary} is a complete written proof, with exact checks of finite instances.
+
+\small
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

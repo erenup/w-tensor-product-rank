@@ -1,0 +1,54 @@
+\section{A change of coordinates}\label{sec:coordinates}
+
+Fix any decomposition \eqref{eq:decomposition} and delete its zero
+summands; this does not increase $r$.
+We first replace each pair of coefficients $(a_{i\ell},b_{i\ell})$ by one
+affine parameter, absorbing its scale into the weight of the summand.
+
+\begin{lemma}[Affine normalization]\label{lem:coordinates}
+There exist $\gamma_1,\ldots,\gamma_k\in\C$ such that the invertible
+coordinate changes $x_i=X_i$, $y_i=\gamma_iX_i+Y_i$ transform
+\eqref{eq:decomposition} into the equivalent identity
+\begin{equation}\label{eq:normalized}
+\prod_{i=1}^k X_i^{d_i-1}(\gamma_iX_i+Y_i)
+=\sum_{\ell=1}^r w_\ell\prod_{i=1}^k(X_i+z_{i\ell}Y_i)^{d_i},
+\end{equation}
+where every $w_\ell$ is nonzero and
+\begin{equation}\label{eq:zw}
+z_{i\ell}=\frac{b_{i\ell}}{a_{i\ell}+\gamma_i b_{i\ell}},
+\qquad
+w_\ell=c_\ell\prod_{i=1}^k(a_{i\ell}+\gamma_i b_{i\ell})^{d_i}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For each $i$, choose $\gamma_i$ so that
+$a_{i\ell}+\gamma_i b_{i\ell}\ne0$ for every $\ell$. Because zero
+summands were deleted, every $c_\ell\ne0$ and every pair
+$(a_{i\ell},b_{i\ell})\ne(0,0)$. Such a choice is therefore
+possible: a pair with $b_{i\ell}\ne0$ excludes only
+$-a_{i\ell}/b_{i\ell}$, and a pair with $b_{i\ell}=0$ has
+$a_{i\ell}\ne0$ and excludes nothing.
+After the coordinate change,
+$a_{i\ell}x_i+b_{i\ell}y_i
+=(a_{i\ell}+\gamma_i b_{i\ell})(X_i+z_{i\ell}Y_i)$.
+Substitution gives \eqref{eq:normalized} and \eqref{eq:zw}; hence
+every $w_\ell\ne0$.
+\end{proof}
+
+Arrange the parameters into the matrix
+\begin{equation}\label{eq:Zc}
+Z_c=
+\begin{pmatrix}
+z_{11}&z_{12}&\cdots&z_{1r}\\
+z_{21}&z_{22}&\cdots&z_{2r}\\
+\vdots&\vdots&&\vdots\\
+z_{k1}&z_{k2}&\cdots&z_{kr}
+\end{pmatrix}\in\C^{k\times r},
+\qquad z_\ell=(z_{1\ell},\ldots,z_{k\ell})\in\C^k.
+\end{equation}
+Its $\ell$th column specifies the point $z_\ell$. Thus the original
+decomposition determines $r$ points with weights $w_\ell$.
+These points are fixed in the subsequent argument; we choose functions
+to evaluate at them. Repeated points and zero coordinates are allowed.
+The symbol $Z=(Z_1,\ldots,Z_k)$ will denote formal variables, distinct
+from the parameter matrix $Z_c$.

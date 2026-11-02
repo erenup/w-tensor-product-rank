@@ -1,0 +1,640 @@
+\section{Products of binary monomials}\label{sec:binary}
+
+The method of Sections~\ref{sec:coordinates}--\ref{sec:tests} extends
+from $x_i^{d_i-1}y_i$ to binary monomials $x_i^{a_i}y_i^{b_i}$ with
+$a_i\ge b_i\ge1$. Let $\mathbf a=(a_1,\ldots,a_k)$ and
+$\mathbf b=(b_1,\ldots,b_k)$ be integer vectors with $a_i\ge b_i\ge1$,
+put $d_i=a_i+b_i$, and consider
+\begin{equation}\label{eq:bm-target}
+F_{\mathbf a,\mathbf b}(x,y)=\prod_{i=1}^k x_i^{a_i}y_i^{b_i}.
+\end{equation}
+Its partially symmetric rank $R_{\bd}(F_{\mathbf a,\mathbf b})$ is the
+least $r$ for which $F_{\mathbf a,\mathbf b}$ admits an expression of
+the form \eqref{eq:decomposition}, with the blocks $(x_i,y_i)$ and the
+degrees $d_i$ fixed. Interchanging $x_i$ and $y_i$ preserves the form;
+for arbitrary positive exponents the rank is obtained by replacing
+$(a_i,b_i)$ with $(\max\{a_i,b_i\},\min\{a_i,b_i\})$. When every
+$b_i=1$, $F_{\mathbf a,\mathbf b}$ is the polynomial \eqref{eq:target}.
+
+\begin{theorem}[Products of binary monomials]\label{thm:binary}
+Let $k\ge1$, let $a_i\ge b_i\ge1$ be integers, and put $d_i=a_i+b_i$.
+Over $\C$,
+\begin{equation}\label{eq:bm-rank}
+R_{\bd}\!\left(\prod_{i=1}^k x_i^{a_i}y_i^{b_i}\right)
+=N(\mathbf a,\mathbf b)
+:=\prod_{i=1}^k(b_i+1)+\sum_{i=1}^k(a_i-b_i)\prod_{j\ne i}(b_j+1),
+\end{equation}
+where empty products equal $1$.
+\end{theorem}
+
+The lower bound holds for every finite decomposition
+\eqref{eq:decomposition} of $F_{\mathbf a,\mathbf b}$, without
+restrictions on its complex coefficients or its support. The upper
+bound is realized by the explicit identity \eqref{eq:bm-character}.
+The theorem concerns the exact complex rank with the symmetric blocks
+fixed. It makes no assertion about real rank, border rank, cactus rank,
+unrestricted nonsymmetric rank, or rank after grouping modes from
+different blocks, and the lower-bound argument uses only finite
+decompositions. Pure-power factors, with $b_i=0$, are excluded; see
+\Cref{rem:bm-pure}.
+
+The lower bound is first proved for abstract product moment conditions
+in \Cref{thm:pm}, and \Cref{prop:bm-reduction} reduces an arbitrary
+decomposition to such conditions. The upper bound is the
+finite-character decomposition of \Cref{prop:bm-upper}. In this
+section, $m_i(e)$ denotes general moment values as in \Cref{thm:pm};
+the values \eqref{eq:mi} are a special case.
+
+\subsection{A product-moment lower bound}
+Throughout this subsection, $b_i\ge1$ and $d_i\ge2b_i$ are integers
+for $i\in[k]$, and
+\begin{equation}\label{eq:bm-parameters}
+\delta_i:=d_i-2b_i,\qquad
+q_i:=\prod_{j\ne i}(b_j+1),\qquad
+N:=\prod_{i=1}^k(b_i+1)+\sum_{i=1}^k\delta_iq_i .
+\end{equation}
+When every $b_j=1$, these are $\delta_i=d_i-2$, $q_i=q=2^{k-1}$ and
+$N=M$; see \eqref{eq:Mcount}.
+
+\begin{theorem}[Product-moment lower bound]\label{thm:pm}
+Let $k\ge1$, let $b_i\ge1$ and $d_i\ge2b_i$ be integers, and let $N$
+be as in \eqref{eq:bm-parameters}. For each $i$, let
+$m_i(0),\ldots,m_i(d_i)\in\C$ satisfy
+\begin{equation}\label{eq:bm-truncation}
+m_i(e)=0\quad(b_i<e\le d_i),
+\qquad
+\beta_i:=m_i(b_i)\ne0 .
+\end{equation}
+Let $z_1,\ldots,z_r\in\C^k$ and nonzero $w_1,\ldots,w_r\in\C$ satisfy
+\begin{equation}\label{eq:bm-moments}
+\sum_{\ell=1}^r w_\ell\prod_{i=1}^k z_{i\ell}^{e_i}
+=\prod_{i=1}^k m_i(e_i),
+\qquad 0\le e_i\le d_i .
+\end{equation}
+Then $r\ge N$. The points may repeat, and any of their coordinates may
+be zero.
+\end{theorem}
+
+Fix data as in \Cref{thm:pm} for the rest of this subsection. Let
+$L_i$ be the linear functional on univariate polynomials of degree at
+most $d_i$ determined by $L_i(Z_i^e)=m_i(e)$, and let $L$ be the
+weighted evaluation \eqref{eq:L}. The proof of \Cref{lem:generalized}
+uses only linearity, so the lemma holds verbatim with
+\eqref{eq:bm-moments} in place of \eqref{eq:moments}. In particular,
+the product rule \eqref{eq:product} holds whenever $\deg P_i\le d_i$
+for every $i$; all Gram computations below use \eqref{eq:bm-moments}
+only in this form.
+
+Let $t\in\C^k$ be admissible, that is, $1+t_iz_{i\ell}\ne0$ for every
+$i,\ell$, and let $h_i$ and $H_t$ be as in \eqref{eq:Ht}. For rational
+functions $\phi,\psi$ defined at every point $z_\ell$, put
+\begin{equation}\label{eq:bm-pairing}
+\langle\phi,\psi\rangle_t
+:=\sum_{\ell=1}^r w_\ell H_t(z_\ell)\phi(z_\ell)\psi(z_\ell).
+\end{equation}
+This is a symmetric bilinear form; no positivity is involved. The Gram
+matrix of a finite list of such functions is the matrix \eqref{eq:Gab}
+of that list, so \Cref{lem:gram,lem:dimension} apply to it in place of
+$\phi_1,\ldots,\phi_M$. The identities below hold for every admissible
+$t$; equivalently, they hold over the field $\C(t_1,\ldots,t_k)$ with
+indeterminate parameters, in which every $1+t_iz_{i\ell}$ is a nonzero
+polynomial, also when $z_{i\ell}=0$.
+
+Write $\mathcal I:=\prod_{j=1}^k\{0,\ldots,b_j\}$ and
+$\mathcal I_i:=\prod_{j\ne i}\{0,\ldots,b_j\}$. Empty products,
+including empty Kronecker products of matrices, equal $1$ (the
+$1\times1$ matrix $(1)$); when $k=1$, $\mathcal I_1$ consists of the
+empty tuple. The basic list is
+\begin{equation}\label{eq:bm-U}
+\mathscr U:=(f_\iota)_{\iota\in\mathcal I},
+\qquad
+f_\iota(Z):=\prod_{j=1}^k\frac{Z_j^{\iota_j}}{h_j(Z_j)^{b_j}},
+\end{equation}
+ordered lexicographically. For each $i$ with $\delta_i>0$, the
+additional list $\mathscr V_i$ consists of the functions
+\begin{equation}\label{eq:bm-V}
+g_{i,s,\iota}(Z):=\frac{Z_i^s}{h_i(Z_i)^s}
+\prod_{j\ne i}\frac{Z_j^{\iota_j}}{h_j(Z_j)^{b_j}},
+\qquad
+b_i+1\le s\le d_i-b_i,\quad \iota\in\mathcal I_i,
+\end{equation}
+ordered first by increasing $s$ and then lexicographically by $\iota$;
+if $\delta_i=0$, then $\mathscr V_i$ is empty. Thus $\mathscr U$ has
+$\prod_j(b_j+1)$ members and $\mathscr V_i$ has $\delta_iq_i$ members,
+$N$ in total. When every $b_j=1$, $\mathscr U$ and $\mathscr V_i$ are
+the families $\cB_0$ and $\cB_i$ of \eqref{eq:B0}--\eqref{eq:Bi}.
+
+For $0\le e,e'\le b_i$, define the $(b_i+1)\times(b_i+1)$ matrix
+$G_i(t_i)$ by
+\begin{equation}\label{eq:bm-Gi}
+[G_i(t_i)]_{e,e'}:=L_i\!\left(Z_i^{e+e'}h_i(Z_i)^{\delta_i}\right).
+\end{equation}
+
+\begin{lemma}[The basic block]\label{lem:bm-basic}
+For every admissible $t$, the Gram matrix of $\mathscr U$ is
+$\bigotimes_{i=1}^kG_i(t_i)$, and
+\begin{equation}\label{eq:bm-Gdet}
+\det G_i(t_i)=(-1)^{b_i(b_i+1)/2}\beta_i^{b_i+1}\ne0 .
+\end{equation}
+In particular, the Gram matrix of $\mathscr U$ is invertible for every
+admissible $t$.
+\end{lemma}
+\begin{proof}
+The polynomial in \eqref{eq:bm-Gi} has degree at most
+$2b_i+\delta_i=d_i$. If $e+e'>b_i$, each of its monomials has degree
+between $b_i+1$ and $d_i$, so the entry vanishes by
+\eqref{eq:bm-truncation}. If $e+e'=b_i$, only the lowest term
+survives, and the entry equals $\beta_i$. Reversing the order of the
+columns therefore gives an upper triangular matrix whose diagonal
+entries all equal $\beta_i$; the reversal of $b_i+1$ columns has sign
+$(-1)^{b_i(b_i+1)/2}$, which proves \eqref{eq:bm-Gdet}. Finally, for
+$\iota,\jmath\in\mathcal I$, multiplication by $H_t$ cancels the
+denominators, and the product rule gives
+\begin{equation*}
+\langle f_\iota,f_\jmath\rangle_t
+=L\!\left(\prod_{i=1}^k Z_i^{\iota_i+\jmath_i}h_i(Z_i)^{\delta_i}\right)
+=\prod_{i=1}^k[G_i(t_i)]_{\iota_i,\jmath_i},
+\end{equation*}
+since the $i$th factor has degree at most $d_i$. This is the
+$(\iota,\jmath)$ entry of the Kronecker product.
+\end{proof}
+
+\begin{lemma}[Orthogonality of the lists]\label{lem:bm-orth}
+For every admissible $t$, the lists
+$\mathscr U,\mathscr V_1,\ldots,\mathscr V_k$ are mutually orthogonal
+for \eqref{eq:bm-pairing}.
+\end{lemma}
+\begin{proof}
+Pair $g_{i,s,\iota}$ with $f_\jmath$. After multiplication by $H_t$,
+the factor in coordinate $i$ is
+\[
+Z_i^{s+\jmath_i}h_i(Z_i)^{d_i-s-b_i}.
+\]
+The exponent of $h_i$ is nonnegative because $s\le d_i-b_i$. Every
+monomial has degree at least $s>b_i$ and at most
+$d_i-b_i+\jmath_i\le d_i$, so its $L_i$-value is zero. Every other
+coordinate factor is $Z_j^{\iota_j+\jmath_j}h_j(Z_j)^{\delta_j}$, of
+degree at most $d_j$. The product rule gives
+$\langle g_{i,s,\iota},f_\jmath\rangle_t=0$.
+
+Now let $i\ne j$, and pair $g_{i,s,\iota}\in\mathscr V_i$ with
+$g_{j,s',\jmath}\in\mathscr V_j$. The coordinate-$i$ factor has the
+same form $Z_i^{s+\jmath_i}h_i(Z_i)^{d_i-s-b_i}$, with $\jmath_i$
+supplied by the second function, and again has zero $L_i$-value. The
+coordinate-$j$ factor $Z_j^{s'+\iota_j}h_j(Z_j)^{d_j-s'-b_j}$ has a
+nonnegative exponent on $h_j$ and degree at most $d_j$. All remaining
+coordinate factors have the form used in \Cref{lem:bm-basic}. Thus
+every use of the product rule stays inside the degree box, and
+$\langle g_{i,s,\iota},g_{j,s',\jmath}\rangle_t=0$.
+\end{proof}
+
+When every $b_j=1$, these are the computations of
+Appendix~\ref{app:entries}. It remains to treat the Gram matrix of a
+nonempty $\mathscr V_i$. Define the $q_i\times q_i$ matrix $H_i(t)$,
+with rows and columns indexed by $\iota,\jmath\in\mathcal I_i$, by
+\begin{equation}\label{eq:bm-Hi}
+[H_i(t)]_{\iota,\jmath}
+:=\sum_{\ell=1}^r w_\ell\frac{z_{i\ell}^{d_i+1}}{1+t_iz_{i\ell}}
+\prod_{j\ne i}z_{j\ell}^{\iota_j+\jmath_j}(1+t_jz_{j\ell})^{\delta_j}.
+\end{equation}
+When every $b_j=1$, this is the matrix \eqref{eq:Hi}.
+
+\begin{lemma}[The anti-triangular blocks]\label{lem:bm-anti}
+Let $\delta_i>0$, and group $\mathscr V_i$ by $s$. For every admissible
+$t$, the $(s,s')$ block of the Gram matrix of $\mathscr V_i$ is zero if
+$s+s'\le d_i$ and equals $H_i(t)$ if $s+s'=d_i+1$. Consequently, up to
+the sign of a block-column permutation, the Gram determinant of
+$\mathscr V_i$ equals $\det H_i(t)^{\delta_i}$.
+\end{lemma}
+\begin{proof}
+The $(s,s')$ block has entries
+\begin{equation}\label{eq:bm-block}
+\sum_{\ell=1}^r w_\ell z_{i\ell}^{s+s'}(1+t_iz_{i\ell})^{d_i-s-s'}
+\prod_{j\ne i}z_{j\ell}^{\iota_j+\jmath_j}(1+t_jz_{j\ell})^{\delta_j}.
+\end{equation}
+If $s+s'\le d_i$, this is the $L$-value of a polynomial in $\cP_{\bd}$
+whose coordinate-$i$ degrees all exceed $b_i$; hence the whole block
+is zero. If $s+s'=d_i+1$, the block is exactly $H_i(t)$.
+
+Write $s=b_i+1+\alpha$ with $0\le\alpha<\delta_i$. After reversing the
+order of the block columns, the block column with index $\alpha'$
+corresponds to $s'=d_i-b_i-\alpha'$, so
+\[
+s+s'=d_i+1+\alpha-\alpha'.
+\]
+Every block above the diagonal ($\alpha'>\alpha$) is therefore zero,
+and every diagonal block is $H_i(t)$. The resulting block lower
+triangular matrix has determinant $\det H_i(t)^{\delta_i}$, as
+asserted. The blocks with $s+s'\ge d_i+2$ lie below the diagonal and
+are not needed.
+\end{proof}
+
+The next identity shows that $H_i$ is nonsingular as a rational
+matrix. Its form includes zero coordinates of the points.
+
+\begin{lemma}[A finite division identity]\label{lem:bm-division}
+For integers $b\ge1$ and $d\ge2b$, the identity
+\begin{equation}\label{eq:bm-division}
+\frac{z^{d+1}}{1+tz}
+=\sum_{e=b}^{d}(-1)^{d-e}\frac{z^{e}}{t^{d+1-e}}
++(-1)^{d+1-b}\frac{z^{b}}{t^{d+1-b}(1+tz)}
+\end{equation}
+holds whenever $t\ne0$ and $1+tz\ne0$. For each fixed $z\ne0$, the
+final term is $O(t^{-(d-b+2)})$ as $t\to\infty$; for $z=0$, every term
+of \eqref{eq:bm-division} vanishes identically. For $b=1$, the
+substitution $n=d-e$ turns \eqref{eq:bm-division} into
+\eqref{eq:division}.
+\end{lemma}
+\begin{proof}
+Multiply \eqref{eq:bm-division} by $(1+tz)t^{d+1-b}$. Consecutive terms
+of the finite sum cancel, leaving $t^{d+1-b}z^{d+1}$.
+If $z\ne0$, the additional denominator $1+tz$ gives one further power
+of $t^{-1}$ at infinity. If $z=0$, the factor $z^b$ vanishes because
+$b\ge1$, as do all the other numerators. Thus neither the identity nor
+the remainder statement requires division by $z$.
+\end{proof}
+
+\begin{lemma}[Nonsingularity of the additional blocks]\label{lem:bm-Hi}
+Let $\delta_i>0$. Then $\det H_i(t)$ is a nonzero element of
+$\C(t_1,\ldots,t_k)$. More precisely, as a Laurent expansion in
+$t_i^{-1}$ with coefficients in $\C(t_j:j\ne i)$,
+\begin{equation}\label{eq:bm-leading}
+H_i(t)=(-1)^{d_i-b_i}\beta_i\,t_i^{-(d_i-b_i+1)}
+\bigotimes_{j\ne i}G_j(t_j)+O\!\left(t_i^{-(d_i-b_i+2)}\right),
+\end{equation}
+and the leading coefficient matrix is invertible.
+\end{lemma}
+\begin{proof}
+Treat the parameters $t_j$, $j\ne i$, as elements of the coefficient
+field $\C(t_j:j\ne i)$. For $\iota,\jmath\in\mathcal I_i$, put
+$A_{\iota,\jmath}(Z_{-i}):=
+\prod_{j\ne i}Z_j^{\iota_j+\jmath_j}h_j(Z_j)^{\delta_j}$;
+its degree in each $Z_j$ is at most $d_j$. Applying
+\eqref{eq:bm-division} with $d=d_i$ and $b=b_i$ separately at each
+point in \eqref{eq:bm-Hi} gives
+\begin{equation}\label{eq:bm-expanded}
+[H_i(t)]_{\iota,\jmath}
+=\sum_{e=b_i}^{d_i}\frac{(-1)^{d_i-e}}{t_i^{d_i+1-e}}\,
+L\!\left(Z_i^{e}A_{\iota,\jmath}\right)
++\frac{(-1)^{d_i+1-b_i}}{t_i^{d_i+1-b_i}}
+\sum_{\ell=1}^r w_\ell
+\frac{z_{i\ell}^{b_i}A_{\iota,\jmath}(z_\ell)}{1+t_iz_{i\ell}}.
+\end{equation}
+The sum over the points is finite and its terms with $z_{i\ell}=0$
+vanish identically, so by \Cref{lem:bm-division} the last term is
+$O(t_i^{-(d_i-b_i+2)})$ entrywise. For $b_i<e\le d_i$, the product
+rule and \eqref{eq:bm-truncation} give $L(Z_i^eA_{\iota,\jmath})=0$.
+For $e=b_i$, the product rule gives
+\[
+L\!\left(Z_i^{b_i}A_{\iota,\jmath}\right)
+=\beta_i\prod_{j\ne i}
+L_j\!\left(Z_j^{\iota_j+\jmath_j}h_j(Z_j)^{\delta_j}\right)
+=\beta_i\left[\bigotimes_{j\ne i}G_j(t_j)\right]_{\iota,\jmath}.
+\]
+This proves \eqref{eq:bm-leading}, which may equivalently be read as a
+formal Laurent expansion in $t_i^{-1}$. By \Cref{lem:bm-basic}, the
+leading coefficient matrix
+$C_i:=(-1)^{d_i-b_i}\beta_i\bigotimes_{j\ne i}G_j(t_j)$ is invertible.
+The coefficient of $t_i^{-(d_i-b_i+1)q_i}$ in $\det H_i$ is therefore
+$\det C_i\ne0$, so $\det H_i$ is not the zero rational function. Each
+coordinate $i$ is treated separately; no common limiting path for the
+parameters is required. When every $b_j=1$, \eqref{eq:bm-leading} is
+\eqref{eq:laurent}.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:pm}]
+For each $i$, put $D_i(t_i):=\prod_{\ell=1}^r(1+t_iz_{i\ell})^{q_i}$.
+If $\delta_i>0$, the entries of $H_i$ have denominators dividing
+$\prod_\ell(1+t_iz_{i\ell})$, so $D_i\det H_i\in\C[t]$; it is a
+nonzero polynomial by \Cref{lem:bm-Hi}. Hence the polynomial
+\begin{equation}\label{eq:bm-avoidance}
+\left(\prod_{i,\ell}(1+t_iz_{i\ell})\right)
+\prod_{i:\,\delta_i>0}D_i(t_i)\det H_i(t)
+\end{equation}
+is nonzero. Since $\C$ is infinite, it is nonzero at some finite
+$t\in\C^k$; fix such a $t$. Then $t$ is admissible, so all the
+functions \eqref{eq:bm-U}--\eqref{eq:bm-V} and the pairing
+\eqref{eq:bm-pairing} are defined, and $\det H_i(t)\ne0$ whenever
+$\delta_i>0$. The Gram matrix of $\mathscr U$ is invertible by
+\Cref{lem:bm-basic}, and each nonempty $\mathscr V_i$ has an
+invertible Gram matrix by \Cref{lem:bm-anti}. By \Cref{lem:bm-orth},
+the Gram matrix of the combined list
+$\mathscr U,\mathscr V_1,\ldots,\mathscr V_k$ is block diagonal with
+these blocks, hence invertible. \Cref{lem:gram,lem:dimension}, applied
+to these $N$ functions, show that their evaluation vectors are
+linearly independent in $\C^r$, so $r\ge N$.
+
+No point was discarded or required to be distinct or to have nonzero
+coordinates. If a moment formula \eqref{eq:bm-moments} initially
+contains zero weights, those terms may first be deleted.
+\end{proof}
+
+As in Section~\ref{sec:tests}, the count rests on the invertibility of
+every diagonal Gram block, established before dimensions are added;
+no positivity of the weights is used, and the auxiliary parameters are
+evaluated at one finite point.
+
+\subsection{From decompositions to product moments}
+
+\begin{proposition}[Reduction to moments]\label{prop:bm-reduction}
+Let $a_i\ge b_i\ge1$ and $d_i=a_i+b_i$. Every decomposition
+\eqref{eq:decomposition} of $F_{\mathbf a,\mathbf b}$ has at least
+$N(\mathbf a,\mathbf b)$ summands.
+\end{proposition}
+\begin{proof}
+To avoid a clash with the exponents $a_i,b_i$, write the decomposition
+as
+\begin{equation}\label{eq:bm-decomposition}
+F_{\mathbf a,\mathbf b}(x,y)=\sum_{\ell=1}^r c_\ell
+\prod_{i=1}^k(u_{i\ell}x_i+v_{i\ell}y_i)^{d_i},
+\end{equation}
+that is, \eqref{eq:decomposition} with $(a_{i\ell},b_{i\ell})$ renamed
+$(u_{i\ell},v_{i\ell})$. Delete its zero summands; this does not
+increase $r$, and afterwards every $c_\ell\ne0$ and every pair
+$(u_{i\ell},v_{i\ell})\ne(0,0)$. As in the proof of
+\Cref{lem:coordinates}, choose $\gamma_i\in\C$ with
+$u_{i\ell}+\gamma_iv_{i\ell}\ne0$ for every $\ell$: a pair with
+$v_{i\ell}\ne0$ excludes only $-u_{i\ell}/v_{i\ell}$, and a pair with
+$v_{i\ell}=0$ excludes nothing. Set
+\begin{equation}\label{eq:bm-zw}
+z_{i\ell}=\frac{v_{i\ell}}{u_{i\ell}+\gamma_iv_{i\ell}},
+\qquad
+w_\ell=c_\ell\prod_{i=1}^k(u_{i\ell}+\gamma_iv_{i\ell})^{d_i},
+\end{equation}
+as in \eqref{eq:zw}. All weights are nonzero. The points may repeat,
+and $z_{i\ell}$ may be zero.
+
+For $0\le e_i\le d_i$, apply the differential operator
+\[
+\prod_{i=1}^k(\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e_i}
+\partial_{y_i}^{e_i}
+\]
+to \eqref{eq:bm-decomposition} and divide by $\prod_id_i!$. Since
+$(\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e_i}\partial_{y_i}^{e_i}
+(u_{i\ell}x_i+v_{i\ell}y_i)^{d_i}
+=d_i!\,(u_{i\ell}+\gamma_iv_{i\ell})^{d_i-e_i}v_{i\ell}^{e_i}$,
+the result on the $\ell$th summand is $w_\ell\prod_iz_{i\ell}^{e_i}$.
+On the target \eqref{eq:bm-target} the result factors over the blocks,
+and the factor of the $i$th block is
+\begin{equation}\label{eq:bm-mi}
+m_i(e):=\frac{1}{d_i!}
+(\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e}\partial_{y_i}^{e}
+\bigl(x_i^{a_i}y_i^{b_i}\bigr)
+=\begin{cases}
+\dfrac{(d_i-e)!\,b_i!}{(b_i-e)!\,d_i!}\,\gamma_i^{b_i-e},
+&0\le e\le b_i,\\[8pt]
+0,&b_i<e\le d_i.
+\end{cases}
+\end{equation}
+Indeed, when $e\le b_i$, differentiation by $\partial_{y_i}^{e}$ first
+contributes $b_i!/(b_i-e)!$. In the binomial expansion of
+$(\partial_{x_i}+\gamma_i\partial_{y_i})^{d_i-e}$, only the term with
+$b_i-e$ derivatives in $y_i$ and $a_i$ derivatives in $x_i$ survives;
+it contributes $\binom{d_i-e}{b_i-e}\gamma_i^{b_i-e}a_i!\,(b_i-e)!$,
+and the product of these factors divided by $d_i!$ is
+\eqref{eq:bm-mi}. For $e>b_i$, the first differentiation already
+vanishes.
+
+Consequently the moment conditions \eqref{eq:bm-moments} hold
+throughout the entire box $0\le e_i\le d_i$, with $m_i(e)$ given by
+\eqref{eq:bm-mi}, and
+\[
+\beta_i=m_i(b_i)=\frac{a_i!\,b_i!}{d_i!}
+=\binom{d_i}{b_i}^{-1}\ne0 .
+\]
+Because $a_i\ge b_i$, we have $d_i\ge2b_i$ and
+$\delta_i=d_i-2b_i=a_i-b_i$, so the number $N$ of
+\eqref{eq:bm-parameters} is $N(\mathbf a,\mathbf b)$.
+\Cref{thm:pm} gives $r\ge N(\mathbf a,\mathbf b)$.
+\end{proof}
+
+The parameters $\gamma_i$ and the auxiliary parameters $t$ in
+\Cref{thm:pm} serve different purposes. The first make an arbitrary
+finite decomposition affine; the second make the Gram blocks
+nondegenerate. Both choices are made after the decomposition is fixed,
+and both follow from explicit finite nonvanishing conditions. Neither
+is a genericity assumption on the decomposition.
+
+\subsection{A finite-character decomposition}
+In this subsection $a_i\ge b_i\ge1$, $d_i=a_i+b_i$,
+$\delta_i=a_i-b_i$ and $N=N(\mathbf a,\mathbf b)$. Let
+$\delta=(\delta_1,\ldots,\delta_k)^{\mathsf T}$,
+$\mathbf 1=(1,\ldots,1)^{\mathsf T}$, and let
+$\mathbf e_1,\ldots,\mathbf e_k$ be the standard basis vectors of
+$\mathbb Z^k$. The construction uses a lattice whose nonzero vectors
+avoid the box of possible exponent differences, followed by character
+orthogonality on the corresponding finite quotient.
+
+\begin{lemma}[A lattice avoiding the coefficient box]\label{lem:bm-lattice}
+Let
+\[
+\Delta:=\diag(b_1+1,\ldots,b_k+1)+\delta\mathbf 1^{\mathsf T},
+\]
+and let $\Lambda:=\Delta\mathbb Z^k$ be the lattice generated by the
+columns of $\Delta$. Then $\det\Delta=N$, so $[\mathbb Z^k:\Lambda]=N$,
+and
+\begin{equation}\label{eq:bm-box}
+\Lambda\cap\prod_{i=1}^k[-a_i,b_i]=\{0\}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The $j$th column of $\Delta$ is $(b_j+1)\mathbf e_j+\delta$. Expand the
+determinant multilinearly in these columns. Any term that chooses
+$\delta$ from two columns vanishes. The term choosing no such column is
+$\prod_i(b_i+1)$, and the term choosing it only from column $i$ is
+$\delta_i\prod_{j\ne i}(b_j+1)$. Hence
+\[
+\det\Delta=\prod_{i=1}^k(b_i+1)
++\sum_{i=1}^k\delta_i\prod_{j\ne i}(b_j+1)=N>0.
+\]
+The index of the column lattice of a nonsingular integer matrix is the
+absolute value of its determinant: integer row and column operations
+preserve both quantities and reduce the matrix to diagonal form, where
+the claim is immediate. Thus $[\mathbb Z^k:\Lambda]=N$.
+
+Suppose that $\lambda=\Delta\mu$ lies in the box in \eqref{eq:bm-box},
+with $\mu\in\mathbb Z^k$, and put $\sigma=\sum_i\mu_i$. Since $\Lambda$
+is generated by the columns,
+\begin{equation}\label{eq:bm-lattice-coordinates}
+\lambda_i=(b_i+1)\mu_i+\delta_i\sigma .
+\end{equation}
+If $\sigma>0$, then $\lambda_i\le b_i$ and $\delta_i\ge0$ imply
+$(b_i+1)\mu_i\le b_i$ for every $i$. Thus every $\mu_i\le0$, contrary
+to $\sigma>0$. If $\sigma<0$, then $-\sigma-1\ge0$; since
+$a_i=b_i+\delta_i$, the lower bound $\lambda_i\ge-a_i$ gives
+\[
+(b_i+1)\mu_i\ge-(b_i+1)+1+(-\sigma-1)\delta_i\ge-(b_i+1)+1 .
+\]
+Integrality now implies $\mu_i\ge0$ for every $i$, contrary to
+$\sigma<0$. Finally, if $\sigma=0$, the upper bounds again imply
+$\mu_i\le0$ for every $i$, and their zero sum forces $\mu=0$. This
+proves \eqref{eq:bm-box}, including the cases in which some $\delta_i$
+vanish.
+\end{proof}
+
+\begin{lemma}[Finite character orthogonality]\label{lem:bm-characters}
+Let $\Gamma$ be a finite abelian group, and let
+$\widehat\Gamma=\operatorname{Hom}(\Gamma,\C^\times)$. Then
+$|\widehat\Gamma|=|\Gamma|$ and, for every $\xi\in\Gamma$,
+\begin{equation}\label{eq:bm-character-sum}
+\sum_{\chi\in\widehat\Gamma}\chi(\xi)=
+\begin{cases}
+|\Gamma|,&\xi=0,\\
+0,&\xi\ne0.
+\end{cases}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $\Gamma$ as a product of cyclic groups
+$\mathbb Z/\nu_1\mathbb Z\times\cdots\times\mathbb Z/\nu_\kappa\mathbb Z$.
+A character is determined by independently choosing a $\nu_j$th root
+of unity as the image of the $j$th cyclic generator. There are
+therefore $\prod_j\nu_j=|\Gamma|$ characters. If $\xi$ has coordinates
+$\xi_j$, the sum in \eqref{eq:bm-character-sum} factors as
+\[
+\prod_{j=1}^{\kappa}\left(\sum_{n=0}^{\nu_j-1}
+\exp\!\left(\frac{2\pi\mathrm i\,n\xi_j}{\nu_j}\right)\right).
+\]
+Each geometric sum equals $\nu_j$ when $\xi_j=0$ in
+$\mathbb Z/\nu_j\mathbb Z$ and equals zero otherwise, which proves the
+formula.
+\end{proof}
+
+\begin{proposition}[An explicit decomposition]\label{prop:bm-upper}
+Let $\Lambda$ be the lattice of \Cref{lem:bm-lattice}, put
+$\Gamma:=\mathbb Z^k/\Lambda$, and for $\chi\in\widehat\Gamma$ put
+$\theta_i(\chi):=\chi(\mathbf e_i+\Lambda)$. Then
+\begin{equation}\label{eq:bm-character}
+F_{\mathbf a,\mathbf b}(x,y)
+=\frac{1}{N\prod_{i=1}^k\binom{d_i}{a_i}}
+\sum_{\chi\in\widehat\Gamma}
+\left(\prod_{i=1}^k\theta_i(\chi)^{-a_i}\right)
+\prod_{i=1}^k\bigl(\theta_i(\chi)x_i+y_i\bigr)^{d_i}.
+\end{equation}
+This is a decomposition of the form \eqref{eq:decomposition} with $N$
+nonzero summands. In particular,
+$R_{\bd}(F_{\mathbf a,\mathbf b})\le N(\mathbf a,\mathbf b)$.
+\end{proposition}
+\begin{proof}
+Each $\theta_i(\chi)$ is a root of unity, and in particular nonzero.
+Let $\mathbf c=(c_1,\ldots,c_k)$ satisfy $0\le c_i\le d_i$. Since
+$\prod_i\theta_i(\chi)^{c_i-a_i}=\chi(\mathbf c-\mathbf a+\Lambda)$, the
+coefficient of $\prod_ix_i^{c_i}y_i^{d_i-c_i}$ on the right of
+\eqref{eq:bm-character} is
+\begin{equation}\label{eq:bm-coefficient}
+\frac{\prod_i\binom{d_i}{c_i}}{N\prod_i\binom{d_i}{a_i}}
+\sum_{\chi\in\widehat\Gamma}\chi(\mathbf c-\mathbf a+\Lambda).
+\end{equation}
+Since $d_i-a_i=b_i$, the vector $\mathbf c-\mathbf a$ lies in
+$\prod_i[-a_i,b_i]$. By \Cref{lem:bm-lattice}, it belongs to
+$\Lambda$ precisely when $\mathbf c=\mathbf a$. As $|\Gamma|=N$,
+\Cref{lem:bm-characters} therefore makes \eqref{eq:bm-coefficient}
+zero for $\mathbf c\ne\mathbf a$ and equal to one for
+$\mathbf c=\mathbf a$. This
+verifies every coefficient of \eqref{eq:bm-character}.
+
+There are $|\widehat\Gamma|=N$ summands, and every coefficient in
+\eqref{eq:bm-character} is nonzero. The tuples
+$(\theta_1(\chi),\ldots,\theta_k(\chi))$ are also distinct: the classes
+$\mathbf e_i+\Lambda$ generate $\Gamma$, so two characters with the
+same $\theta_i$ for every $i$ coincide. Moreover, the product
+$\prod_i(\theta_ix_i+y_i)^{d_i}$ has coefficient one at
+$\prod_iy_i^{d_i}$ and coefficient $d_i\theta_i$ at
+$x_iy_i^{d_i-1}\prod_{j\ne i}y_j^{d_j}$; thus distinct tuples give
+nonproportional products. The identity is consequently an $N$-term
+decomposition over $\C$ with the blocks fixed.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:binary}]
+\Cref{prop:bm-reduction} bounds every decomposition below by
+$N(\mathbf a,\mathbf b)$, and \Cref{prop:bm-upper} supplies a
+decomposition with exactly this many summands.
+\end{proof}
+
+\subsection{Specializations}
+
+\begin{remark}[The case $b_i=1$]\label{rem:bm-W}
+Take $b_i=1$ and $a_i=d_i-1$, which is allowed for every $d_i\ge2$.
+Then $\delta_i=d_i-2$ and
+$N(\mathbf a,\mathbf b)=2^k+\sum_i(d_i-2)2^{k-1}=M$. The moments
+\eqref{eq:bm-mi} become \eqref{eq:mi}, with $\beta_i=1/d_i$; the lists
+$\mathscr U$ and $\mathscr V_i$ are $\cB_0$ and $\cB_i$; and
+$G_i$, $H_i$ and \eqref{eq:bm-leading} reduce to \eqref{eq:Gi},
+\eqref{eq:Hi} and \eqref{eq:laurent}. Thus \Cref{thm:binary} contains
+\Cref{thm:main}, and gives
+$R_{\bd}\bigl(\prod_ix_i^{d_i-1}y_i\bigr)=2^{k-1}(\sum_id_i-2k+2)$
+for all $k\ge1$ and $d_i\ge2$. In particular,
+\Cref{prop:bm-upper} gives an explicit $M$-term decomposition for all
+$k\ge1$ and $d_i\ge2$, independently of
+\cite[Theorem~1.1]{CCS2025}.
+\end{remark}
+
+For one block, \eqref{eq:bm-rank} gives $R_{(a+b)}(x^ay^b)=a+1$ for
+$a\ge b\ge1$, the classical rank of a binary monomial
+\cite[Section~4.3 of the arXiv version]{BBGOV2021}. For two blocks
+it becomes
+\begin{align*}
+N(\mathbf a,\mathbf b)
+&=(b_1+1)(b_2+1)+(a_1-b_1)(b_2+1)+(a_2-b_2)(b_1+1)\\
+&=(a_1+1)(a_2+1)-(a_1-b_1)(a_2-b_2).
+\end{align*}
+For two binary-monomial blocks, Ga{\l}{\fontencoding{T1}\selectfont\k{a}}zka constructed a reduced
+apolar set giving
+\[
+R_{\bd}\bigl(x_1^{a_1}y_1^{b_1}x_2^{a_2}y_2^{b_2}\bigr)
+\le(a_1+1)(b_2+1)+(b_1+1)(a_2+1)-(b_1+1)(b_2+1),
+\qquad a_i\ge b_i\ge1,
+\]
+and obtained lower bounds and exact special cases
+\cite[Theorem~1.5 and Section~7.1 of the arXiv version]{Galazka2023}.
+The binomial equations in that construction describe a finite set in
+the two-dimensional torus. For $k=2$ the support of the decomposition
+\eqref{eq:bm-character} is exactly the point set of
+Ga{\l}{\fontencoding{T1}\selectfont\k{a}}zka's construction
+\cite[Section~7.1 of the arXiv version]{Galazka2023}. The lower bound
+\[
+R_{\bd}\bigl(x_1^{a_1}y_1^{b_1}x_2^{a_2}y_2^{b_2}\bigr)
+\ge\max\{(a_1+1)(b_2+1),(b_1+1)(a_2+1)\}
+\]
+also appears in
+\cite[Proposition~4.3 of the arXiv version]{BBGOV2021} (stated there
+with the roles of $x_i$ and $y_i$ exchanged). Behr's
+unpublished manuscript \cite{Behr2026} gives the exact two-block
+formula
+\[
+R_{\bd}\bigl(x_1^{a_1}y_1^{b_1}x_2^{a_2}y_2^{b_2}\bigr)
+=(a_1+1)(a_2+1)-(a_1-b_1)(a_2-b_2)
+\qquad(a_i\ge b_i\ge1)
+\]
+in Corollary~5.4, including the value $2(d_1+d_2-2)$ for
+$x_1^{d_1-1}y_1x_2^{d_2-1}y_2$ with $d_1,d_2\ge2$ in Theorem~1.1.
+Thus the two-block specialization is already present in that work; its
+section on three or more factors leaves that case open.
+
+When all $a_i=b_i$, the lists $\mathscr V_i$ are absent, the formula
+reduces to $R_{\bd}\bigl(\prod_ix_i^{b_i}y_i^{b_i}\bigr)=\prod_i(b_i+1)$,
+and the lattice matrix $\Delta$ is diagonal.
+
+\begin{example}[Ranks $20$ and $54$]\label{ex:bm-54}
+For the cubic triple $x_1^2y_1x_2^2y_2x_3^2y_3$ of \Cref{ex:rank20},
+$b_i=1$ and $\delta_i=1$, so $N=2^3+3\cdot2^2=20$. The matrix
+$\Delta$ has diagonal entries $3$ and off-diagonal entries $1$, and
+\eqref{eq:bm-character} is a sum over the $20$ characters of
+$\mathbb Z^3/\Delta\mathbb Z^3$. For $\mathbf a=(3,3,3)$ and
+$\mathbf b=(2,2,2)$, we have $\delta_i=1$, so
+\[
+R_{(5,5,5)}\bigl(x_1^3y_1^2x_2^3y_2^2x_3^3y_3^2\bigr)=3^3+3\cdot3^2=54 .
+\]
+Here $\Delta$ has diagonal entries $4$ and off-diagonal entries $1$,
+and \eqref{eq:bm-character} provides the $54$ summands.
+\end{example}
+
+\begin{remark}[Pure-power factors]\label{rem:bm-pure}
+The hypothesis $b_i\ge1$ is essential to \Cref{thm:binary} as stated.
+In the lower bound it is used where the remainder in
+\eqref{eq:bm-division} is evaluated at a zero coordinate. The formula
+would already be false for a single pure power $x^a$ with $b=0$ and
+$a\ge1$: its rank is $1$, whereas the right-hand side of
+\eqref{eq:bm-rank} would be $a+1$. Such factors are excluded from the
+statement.
+\end{remark}

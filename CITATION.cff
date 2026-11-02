@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "Please cite the manuscript using the preferred citation below."
+type: software
+title: "The Exact Partially Symmetric Rank of Products of W-States"
+authors:
+  - given-names: "Wenqi"
+    family-names: "Zhu"
+    affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+    email: "wenqi.zhu@maths.ox.ac.uk"
+  - given-names: "Ping"
+    family-names: "Nie"
+    affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+    email: "ping.nie@uwaterloo.ca"
+license: MIT
+repository-code: "https://github.com/erenup/w-tensor-product-rank"
+abstract: >-
+  For every k >= 2 and all d_1,...,d_k >= 3, the partially symmetric
+  rank over the complex numbers of the product of k generalized W-states,
+  represented by the product of the binary forms x_i^(d_i-1) y_i with the
+  k symmetric blocks fixed, equals 2^(k-1)(d_1+...+d_k-2k+2). The lower
+  bound applies to every complex decomposition; it converts the
+  decomposition into weighted points satisfying product moment conditions
+  and shows that a weighted bilinear Gram matrix of explicit rational test
+  functions is invertible at one finite choice of auxiliary parameters.
+  The upper bound is the construction of Canino, Casarotti and
+  Santarsiero. More generally, for every k >= 1 and all integers
+  a_i >= b_i >= 1, the rank of the product of the binary monomials
+  x_i^(a_i) y_i^(b_i), with blocks of degrees a_i+b_i fixed, equals
+  (b_1+1)...(b_k+1) plus the sum over i of (a_i-b_i) times the product
+  of (b_j+1) over j != i, with a matching explicit finite-character
+  decomposition. Includes the paper, plain-text proofs, exact supporting
+  checks, and a Lean proof of six universal algebraic components of the
+  lower-bound argument and of its one-coordinate case. Files outside paper/ are licensed under MIT; files
+  in paper/, including the manuscript source and PDF, are licensed under
+  CC BY-SA 4.0.
+preferred-citation:
+  type: unpublished
+  license: CC-BY-SA-4.0
+  title: "The Exact Partially Symmetric Rank of Products of W-States"
+  authors:
+    - given-names: "Wenqi"
+      family-names: "Zhu"
+      affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+      email: "wenqi.zhu@maths.ox.ac.uk"
+    - given-names: "Ping"
+      family-names: "Nie"
+      affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+      email: "ping.nie@uwaterloo.ca"

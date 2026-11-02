@@ -1,0 +1,67 @@
+\section{The leading coefficient of the rational blocks}\label{app:laurent}
+
+We give the exact identity underlying \Cref{lem:Hi}. This also
+shows explicitly why zero coordinates of the decomposition points
+cause no difficulty.
+
+\begin{lemma}[Finite division identity]\label{lem:division}
+For an integer $d\ge1$, $t\ne0$, and $1+tz\ne0$,
+\begin{equation}\label{eq:division}
+\frac{z^{d+1}}{1+tz}
+=\sum_{n=0}^{d-1}\frac{(-1)^n z^{d-n}}{t^{n+1}}
++\frac{(-1)^d z}{t^d(1+tz)}.
+\end{equation}
+For each fixed $z\in\C$, the final term is $O(t^{-d-1})$ as
+$t\to\infty$; when $z=0$, every term is identically zero.
+\end{lemma}
+\begin{proof}
+Multiply by $1+tz$. The consecutive terms in the finite sum
+cancel, leaving $z^{d+1}$ after the remainder is included.
+For $z\ne0$, $z/(1+tz)=O(t^{-1})$; for $z=0$ it is zero.
+\end{proof}
+
+\begin{proof}[Detailed proof of \Cref{lem:Hi}]
+Fix $i$ and treat $t_i$ as the variable, keeping the other parameters
+fixed. For row and column indices $\iota,\jmath$, set
+$A_{\iota,\jmath}(Z_{-i})=
+\prod_{j\ne i}Z_j^{\iota_j+\jmath_j}(1+t_jZ_j)^{d_j-2}$.
+Each coordinate degree of $A_{\iota,\jmath}$ is at most $d_j$.
+Substituting \eqref{eq:division} with $d=d_i$ into \eqref{eq:Hi}
+gives
+\begin{equation}\label{eq:expanded-H}
+[H_i(t)]_{\iota,\jmath}
+=\sum_{n=0}^{d_i-1}(-1)^n t_i^{-n-1}
+L\!\left(Z_i^{d_i-n}A_{\iota,\jmath}(Z_{-i})\right)
++O(t_i^{-d_i-1}).
+\end{equation}
+The remainder estimate is valid because the sum over the fixed
+points is finite. The finite identity applies also to points with
+$z_{i\ell}=0$; no division by such a coordinate is used.
+
+For $n=0,\ldots,d_i-2$, the $i$th exponent $d_i-n$ lies between
+$2$ and $d_i$. The corresponding $L$-value is zero by
+\eqref{eq:product}. For $n=d_i-1$, the same rule gives
+\begin{equation}\label{eq:leading-entry}
+L\!\left(Z_i A_{\iota,\jmath}(Z_{-i})\right)
+=\beta_i\prod_{j\ne i}
+L_j\!\left(Z_j^{\iota_j+\jmath_j}(1+t_jZ_j)^{d_j-2}\right)
+=\beta_i\left[\bigotimes_{j\ne i}G_j(t_j)\right]_{\iota,\jmath}.
+\end{equation}
+Equations \eqref{eq:expanded-H} and \eqref{eq:leading-entry}
+prove \eqref{eq:laurent}.
+
+For completeness, put
+$C_i=(-1)^{d_i-1}\beta_i\bigotimes_{j\ne i}G_j(t_j)$.
+This $q\times q$ matrix is invertible. Taking determinants gives
+\begin{equation}\label{eq:det-laurent}
+\det H_i(t)=t_i^{-d_iq}
+\left(\det C_i+O(t_i^{-1})\right),
+\qquad q=2^{k-1},\quad \det C_i\ne0.
+\end{equation}
+Thus $\det H_i$ cannot be the zero rational function: the entries of
+$H_i$ have denominators only of the form $1+t_iz_{i\ell}$, so the
+other $t_j$ may be specialized to arbitrary complex values, and a
+nonzero specialization gives $\det H_i\ne0$ in $\C(t)$. Equivalently,
+the calculation can be carried out as a formal Laurent expansion
+over the field $\C(t_j:j\ne i)$.
+\end{proof}

@@ -1,0 +1,45 @@
+\section{Coordinate factors in the Gram entries}\label{app:entries}
+
+This appendix records the cancellation and degree checks used in
+\Cref{lem:blocks}. For a basic function indexed by $\jmath$ and a
+function from $\cB_i$ indexed by $(s,\iota)$, their product with
+$H_t$ is
+\begin{equation}\label{eq:cross-basic}
+P_{ab}(Z)=
+Z_i^{s+\jmath_i}h_i(Z_i)^{d_i-s-1}
+\prod_{j\ne i}Z_j^{\iota_j+\jmath_j}h_j(Z_j)^{d_j-2}.
+\end{equation}
+The exponent $d_i-s-1$ is nonnegative because $s\le d_i-1$.
+The degrees in coordinate $i$ range from $s+\jmath_i\ge2$ to
+$d_i-1+\jmath_i\le d_i$. Thus the $i$th factor has zero
+$L_i$-value. Each other factor has degree at most $d_j$.
+Applying \eqref{eq:product} gives $L(P_{ab})=0$.
+
+Next choose functions from $\cB_i$ and $\cB_j$, with $i\ne j$.
+Let their indices be $(s,\iota)$ and $(s',\jmath)$, respectively.
+Then
+\begin{equation}\label{eq:cross-additional}
+\begin{split}
+P_{ab}(Z)={}&
+Z_i^{s+\jmath_i}h_i(Z_i)^{d_i-s-1}
+Z_j^{s'+\iota_j}h_j(Z_j)^{d_j-s'-1}\\
+&\times\prod_{m\ne i,j}
+Z_m^{\iota_m+\jmath_m}h_m(Z_m)^{d_m-2}.
+\end{split}
+\end{equation}
+Both distinguished coordinate factors have nonnegative powers of
+$h_i,h_j$ and monomial degrees between $2$ and their respective
+degree bounds. All remaining factors are also within their bounds.
+The product rule therefore gives $L(P_{ab})=0$.
+
+Finally, for two functions from the same family $\cB_i$,
+the coordinate factors are
+\begin{equation}\label{eq:same-family}
+P_{ab}(Z)=Z_i^{s+s'}h_i(Z_i)^{d_i-s-s'}
+\prod_{j\ne i}Z_j^{\iota_j+\jmath_j}h_j(Z_j)^{d_j-2}.
+\end{equation}
+This is polynomial when $s+s'\le d_i$, yielding the zero blocks
+in \Cref{lem:anti}. At $s+s'=d_i+1$, one denominator remains,
+yielding $H_i$ in \eqref{eq:Hi}. In particular, this last case
+is not an application of the polynomial moment formula to a
+rational function; it requires the calculation below.

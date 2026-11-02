@@ -1,0 +1,34 @@
+[
+  {
+    "control": "wrong claimed rank",
+    "rejected": "REJECT: claimed rank"
+  },
+  {
+    "control": "transpose",
+    "rejected": "REJECT: coefficient-box lattice collision"
+  },
+  {
+    "control": "remove_character",
+    "rejected": "REJECT: actual cyclotomic coefficient sum"
+  },
+  {
+    "control": "corrupt_character",
+    "rejected": "REJECT: actual cyclotomic coefficient sum"
+  },
+  {
+    "control": "phase",
+    "rejected": "REJECT: actual cyclotomic coefficient sum"
+  },
+  {
+    "control": "weight",
+    "rejected": "REJECT: cubature moment"
+  },
+  {
+    "control": "duplicate_vector",
+    "rejected": "REJECT: full evaluated Gram determinant"
+  },
+  {
+    "control": "laurent_sign",
+    "rejected": "REJECT: finite Laurent division identity"
+  }
+]

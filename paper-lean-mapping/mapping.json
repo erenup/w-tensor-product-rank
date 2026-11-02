@@ -1,0 +1,807 @@
+{
+  "schema_version": 3,
+  "paper": "paper/main.tex",
+  "paper_title": "The Exact Partially Symmetric Rank of Products of W-States",
+  "paper_subtitle": "A proof via moment conditions and weighted Gram matrices",
+  "paper_authors": [
+    "Wenqi Zhu",
+    "Ping Nie"
+  ],
+  "scope": "Every numbered theorem, proposition, lemma, definition, example and remark of the paper, including the appendices, is indexed in TeX order with its per-environment section number, together with the title of every numbered section and appendix. Supporting equation anchors record where the Lean targets and exact checks enter the proofs. No complete rank formula is a Lean theorem, and finite checks do not prove universal statements.",
+  "sections": [
+    {
+      "number": "1",
+      "title": "Introduction and main result",
+      "source": "paper/sections/00_introduction.tex"
+    },
+    {
+      "number": "2",
+      "title": "A change of coordinates",
+      "source": "paper/sections/01_coordinates.tex"
+    },
+    {
+      "number": "3",
+      "title": "Coefficient matching and moment conditions",
+      "source": "paper/sections/02_moments.tex"
+    },
+    {
+      "number": "4",
+      "title": "Generalized moment conditions",
+      "source": "paper/sections/03_generalized_moments.tex"
+    },
+    {
+      "number": "5",
+      "title": "Constructing the weighted Gram matrix",
+      "source": "paper/sections/04_gram.tex"
+    },
+    {
+      "number": "6",
+      "title": "From Gram invertibility to a rank lower bound",
+      "source": "paper/sections/05_rank.tex"
+    },
+    {
+      "number": "7",
+      "title": "A specific family of test functions",
+      "source": "paper/sections/06_test_functions.tex"
+    },
+    {
+      "number": "8",
+      "title": "Products of binary monomials",
+      "source": "paper/sections/07_binary_monomials.tex"
+    },
+    {
+      "number": "A",
+      "title": "Coordinate factors in the Gram entries",
+      "source": "paper/appendices/A_block_entries.tex"
+    },
+    {
+      "number": "B",
+      "title": "The leading coefficient of the rational blocks",
+      "source": "paper/appendices/B_laurent.tex"
+    }
+  ],
+  "lean_targets": [
+    {
+      "id": "univariate",
+      "declaration": "TR29.univariate_moment_bound",
+      "source": "lean/TR29/Univariate.lean",
+      "proposition": "TR29.UnivariateMomentBound",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For b >= 1 and d >= b, arbitrary complex nodes and weights with a nonzero degree-b moment and zero moments of degrees b+1,...,d number at least d-b+1. Nodes may repeat or vanish; weights need not be nonzero; lower moments are unrestricted."
+    },
+    {
+      "id": "geometric_kernel",
+      "declaration": "TR29.geometric_kernel_identity",
+      "source": "lean/TR29/Series.lean",
+      "proposition": "TR29.GeometricKernelIdentity",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "Over every field K, the power series with coefficients (-z^(-1))^e is an inverse of 1 + z^(-1) X; at z = 0 Lean's inverse is zero and the kernel is 1."
+    },
+    {
+      "id": "matrix_moment",
+      "declaration": "TR29.matrix_moment_leading",
+      "source": "lean/TR29/Series.lean",
+      "proposition": "TR29.MatrixMomentLeadingTheorem",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "Over every field K, for q x q matrix weights M_l with nonsingular degree-b matrix moment and vanishing matrix moments of degrees b+1,...,d (1 <= b <= d), the series X sum_l M_l z_l^d times the geometric kernel of z_l has zero coefficients below d-b+1, coefficient (-1)^(d-b) times the degree-b moment at d-b+1, and nonzero determinant in K[[X]]."
+    },
+    {
+      "id": "anti_diagonal",
+      "declaration": "TR29.anti_diagonal_blocks",
+      "source": "lean/TR29/Blocks.lean",
+      "proposition": "TR29.AntiDiagonalBlockTheorem",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "A complex matrix indexed by Fin r x Fin q whose (s,t) block is zero for s+t+1 < r and equals a fixed nonsingular H for s+t+1 = r has nonzero determinant; the remaining blocks are arbitrary and r = 0 or q = 0 is allowed."
+    },
+    {
+      "id": "gram_assembly",
+      "declaration": "TR29.orthogonal_gram_assembly",
+      "source": "lean/TR29/Blocks.lean",
+      "proposition": "TR29.OrthogonalGramAssembly",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For vectors in C^n grouped into blocks and complex weights, with the bilinear pairing sum_l w_l u_l v_l (no conjugation), zero cross-block pairings and nonzero within-block Gram determinants imply linear independence of the whole family and that the total size is at most n."
+    },
+    {
+      "id": "w_count",
+      "declaration": "TR29.tr29_gram_lower_bound",
+      "source": "lean/TR29/Count.lean",
+      "proposition": "TR29.TR29GramLowerBound",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For k >= 1 and d_i >= 2, a family of vectors in C^n with one block of size 2^k and blocks of sizes (d_i-2)2^(k-1), satisfying the hypotheses of the Gram-assembly target, has n >= 2^(k-1)(sum_i d_i - 2k + 2)."
+    },
+    {
+      "id": "chart_avoidance",
+      "declaration": "TR29.finite_chart_avoidance",
+      "source": "lean/TR29/Avoidance.lean",
+      "proposition": "TR29.FiniteChartAvoidance",
+      "proposition_source": "lean/TR29/Statement.lean",
+      "scope": "For arbitrary z_(i,l) in C and finitely many nonzero polynomials in k variables, one finite t in C^k makes every polynomial and every factor 1 + t_i z_(i,l) nonzero."
+    }
+  ],
+  "exact_checks": [
+    {
+      "id": "charts_univariate",
+      "source": "verification/core/verification/check_charts.py",
+      "function": "univariate_cases",
+      "scope": "One-coordinate rational examples for d = 2,...,9 with moments (gamma, 1, 0, ..., 0) and chart parameter 2: the moments, a nonzero value of the 1 x 1 block H, and for d >= 3 the zero blocks for s+s' <= d, the anti-diagonal blocks equal to H and block rank d-2.",
+      "limitation": "Finitely many one-coordinate cases at one parameter value; no multivariate or all-parameter statement."
+    },
+    {
+      "id": "charts_cubic",
+      "source": "verification/core/verification/check_charts.py",
+      "function": "cubic_chart",
+      "scope": "For one 20-term decomposition of the cubic triple over Q(zeta_10) and chart parameters (2,3,4): the 8 basic and 3 x 4 additional evaluation vectors, scaled by a common factor at each node with compensating weights, have basic Gram rank 8, additional Gram ranks 4, 4, 4, zero cross blocks and full Gram rank 20. Controls reject a changed coefficient, a chart with a pole and the chart (0,0,0).",
+      "limitation": "One decomposition and one chart; it does not bound other decompositions."
+    },
+    {
+      "id": "cyclotomic_cubic",
+      "source": "verification/core/verification/exact_cyclotomic.py",
+      "function": "main",
+      "scope": "All 64 coefficients and all 64 moments on the box 0 <= e_i <= 3 of the same 20-term decomposition, four Hilbert ranks and the intersection and Gram ranks of the symmetric-chart spaces, in exact arithmetic modulo the tenth cyclotomic polynomial. Controls reject an omitted summand and a changed coefficient.",
+      "limitation": "One fixed decomposition; it shows that 20 terms suffice for the cubic triple, not that fewer cannot."
+    },
+    {
+      "id": "monomial_upper",
+      "source": "verification/core/families/monomial-products/verification/check_exact.py",
+      "function": "upper",
+      "scope": "For eight exponent tuples with N = 54, 64, 51, 20, 66, 15, 8 and 24: det Delta = N, the adjugate identity, lattice membership at every point of the coefficient box, the N characters of Z^k/Lambda, and every coefficient of the character identity, reduced exactly modulo the N-th cyclotomic polynomial.",
+      "limitation": "Eight explicit tuples; the lattice and character statements for all exponents are proved in the paper."
+    },
+    {
+      "id": "monomial_lower",
+      "source": "verification/core/families/monomial-products/verification/check_exact.py",
+      "function": "lower",
+      "scope": "Three rational cubatures with (d,b) = ((5,4,3),(2,2,1)), ((5,5,5),(2,2,2)) and ((6,3),(2,1)), including zero coordinates and a repeated node: all product moments on the box, the U and V_i lists of lengths 33, 54 and 13, vanishing cross-list entries and internal anti-triangular zeros, a nonzero full Gram determinant, and the finite division identity at z = 0, 1, -2/3 with t = 5/7 for every (d_i, b_i).",
+      "limitation": "Three fixed node sets at one parameter vector; they do not bound other decompositions."
+    }
+  ],
+  "numbered_results": [
+    {
+      "label": null,
+      "environment": "definition",
+      "number": "1.1",
+      "section": "1",
+      "source": "paper/sections/00_introduction.tex",
+      "title": "Partially symmetric rank",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "Definition only; no Lean declaration or exact check is assigned.",
+      "paper_only": "The definition of the rank with the blocks (x_i, y_i) and degrees d_i fixed."
+    },
+    {
+      "label": "thm:main",
+      "environment": "theorem",
+      "number": "1.1",
+      "section": "1",
+      "source": "paper/sections/00_introduction.tex",
+      "title": "Exact partially symmetric rank",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "w_count"
+      ],
+      "exact_checks": [],
+      "covered": "TR29.tr29_gram_lower_bound derives the count r >= 2^(k-1)(sum_i d_i - 2k + 2) for k >= 1 and d_i >= 2 from explicit zero cross-block pairings and nonsingular within-block Gram matrices of sizes 2^k and (d_i-2)2^(k-1).",
+      "paper_only": "The test functions, the verification of the Gram hypotheses for them (Lemmas 7.1 to 7.3 and Proposition 7.1), the reduction of Sections 2 to 4, and the upper bound, which is cited from Canino, Casarotti and Santarsiero and is also given by Proposition 8.2 (Remark 8.1)."
+    },
+    {
+      "label": "ex:rank20",
+      "environment": "example",
+      "number": "1.1",
+      "section": "1",
+      "source": "paper/sections/00_introduction.tex",
+      "title": "Three cubic factors",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "cyclotomic_cubic",
+        "charts_cubic"
+      ],
+      "covered": "One explicit 20-term decomposition of the cubic triple is checked coefficient by coefficient, and its 20 x 20 evaluated Gram matrix is checked to be nonsingular at t = (2,3,4).",
+      "paper_only": "That every decomposition of the cubic triple has at least 20 terms, and the value 2^(k-1)(k+2) for every k."
+    },
+    {
+      "label": "lem:coordinates",
+      "environment": "lemma",
+      "number": "2.1",
+      "section": "2",
+      "source": "paper/sections/01_coordinates.tex",
+      "title": "Affine normalization",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "The choice of the gamma_i and the formulas for z and w, including zero coordinates."
+    },
+    {
+      "label": "lem:moments",
+      "environment": "lemma",
+      "number": "3.1",
+      "section": "3",
+      "source": "paper/sections/02_moments.tex",
+      "title": "Moment conditions",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "cyclotomic_cubic"
+      ],
+      "covered": "For the one 20-term cubic decomposition, both sides of the equivalence are checked: its 64 coefficients and the 64 moments of its normalized nodes and weights, with gamma_i = 0 and beta_i = 1/3.",
+      "paper_only": "The equivalence for every decomposition and every gamma."
+    },
+    {
+      "label": "lem:generalized",
+      "environment": "lemma",
+      "number": "4.1",
+      "section": "4",
+      "source": "paper/sections/03_generalized_moments.tex",
+      "title": "Generalized moment conditions",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "Extension by linearity and the product rule."
+    },
+    {
+      "label": "lem:gram",
+      "environment": "lemma",
+      "number": "5.1",
+      "section": "5",
+      "source": "paper/sections/04_gram.tex",
+      "title": "Gram factorization",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "The factorization G = E^T W E."
+    },
+    {
+      "label": "lem:dimension",
+      "environment": "lemma",
+      "number": "6.1",
+      "section": "6",
+      "source": "paper/sections/05_rank.tex",
+      "title": "The dimension bound",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "gram_assembly"
+      ],
+      "exact_checks": [],
+      "covered": "The one-block case of TR29.orthogonal_gram_assembly: a nonzero determinant of the bilinear Gram matrix sum_l w_l u_l v_l of finitely many vectors in C^n gives their linear independence and the size bound, for arbitrary complex vectors and weights.",
+      "paper_only": "The identification of the Lean pairing with E^T W E of Lemma 5.1; the specialization is not a separate Lean declaration."
+    },
+    {
+      "label": "ex:list",
+      "environment": "example",
+      "number": "7.1",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "The twenty functions for three cubic factors",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "charts_cubic"
+      ],
+      "covered": "The evaluation vectors of the eight basic and twelve additional functions are built for one 20-term decomposition, up to a common nonzero factor at each node (compensated in the weights) and the order within each family.",
+      "paper_only": "The list for general k and d_i."
+    },
+    {
+      "label": "lem:blocks",
+      "environment": "lemma",
+      "number": "7.1",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Block diagonal structure",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "charts_cubic"
+      ],
+      "covered": "For one decomposition of the cubic triple at t = (2,3,4): zero cross blocks and basic Gram rank 8.",
+      "paper_only": "The cross-block cancellations (Appendix A), the Kronecker formula and det G_i = -beta_i^2 for every admissible t and every decomposition."
+    },
+    {
+      "label": "ex:G0",
+      "environment": "example",
+      "number": "7.2",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "An explicit basic Gram block",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "The explicit 4 x 4 Kronecker product."
+    },
+    {
+      "label": "lem:anti",
+      "environment": "lemma",
+      "number": "7.2",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "The anti-triangular blocks",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "anti_diagonal"
+      ],
+      "exact_checks": [
+        "charts_univariate"
+      ],
+      "covered": "TR29.anti_diagonal_blocks gives a nonzero determinant from the zero blocks and a common nonsingular block on the first anti-diagonal (with s = 2,...,d_i-1 shifted to 0,...,d_i-3). The one-coordinate examples check the zero pattern, the anti-diagonal blocks and the block rank.",
+      "paper_only": "The moment cancellations giving the zero blocks and the copies of H_i, and the signed formula det G_i = +-det H_i^(d_i-2)."
+    },
+    {
+      "label": "ex:reversal",
+      "environment": "example",
+      "number": "7.3",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Column reversal when $`d_i=5`$",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "The displayed block-column reversal for d_i = 5."
+    },
+    {
+      "label": "lem:Hi",
+      "environment": "lemma",
+      "number": "7.3",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Nonzero determinant of each additional block",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "geometric_kernel",
+        "matrix_moment"
+      ],
+      "exact_checks": [
+        "charts_univariate"
+      ],
+      "covered": "The two Series targets give, over any field including C(t_j : j != i), the vanishing lower coefficients, the leading coefficient (-1)^(d-b) times the degree-b matrix moment and a nonzero series determinant; b = 1 is the case of this lemma, with X = 1/t_i. The one-coordinate examples check H(2) != 0 for d = 2,...,9.",
+      "paper_only": "The identification of the rational matrix H_i(t) with that series, the matrix-moment hypotheses from the product rule, and the passage to a nonzero rational determinant."
+    },
+    {
+      "label": "prop:nondegenerate",
+      "environment": "proposition",
+      "number": "7.1",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Simultaneous Gram nondegeneracy",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "chart_avoidance"
+      ],
+      "exact_checks": [
+        "charts_cubic"
+      ],
+      "covered": "TR29.finite_chart_avoidance gives one finite t at which given nonzero polynomials and all factors 1 + t_i z_il are nonzero. The cubic check exhibits t = (2,3,4) for one decomposition; its controls reject a chart with a pole and the chart (0,0,0).",
+      "paper_only": "That N_i = D_i det H_i is a nonzero polynomial (from Lemma 7.3) and the assembly of the invertible block-diagonal Gram matrix."
+    },
+    {
+      "label": "ex:twenty",
+      "environment": "example",
+      "number": "7.4",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "The $`20\\times20`$ Gram matrix",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "charts_cubic"
+      ],
+      "covered": "For one decomposition at t = (2,3,4): diagonal block ranks 8, 4, 4, 4, zero off-diagonal blocks and full rank 20.",
+      "paper_only": "Invertibility for every decomposition and the Laurent expansions of the H_i."
+    },
+    {
+      "label": "thm:binary",
+      "environment": "theorem",
+      "number": "8.1",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Products of binary monomials",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "The N-term character identity of Proposition 8.2 is checked for eight exponent tuples.",
+      "paper_only": "The lower bound for every decomposition (Proposition 8.1) and the identity for all exponents."
+    },
+    {
+      "label": "thm:pm",
+      "environment": "theorem",
+      "number": "8.2",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Product-moment lower bound",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "univariate",
+        "gram_assembly",
+        "chart_avoidance"
+      ],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "For k = 1 one has N = d_1 - b_1 + 1, and TR29.univariate_moment_bound proves the theorem in that case (it needs only b <= d and permits zero weights). For general k, the Gram-assembly target is the final linear-algebra step and the chart-avoidance target the common choice of t, each under its explicit hypotheses. Three rational cubatures are checked with nonzero full Gram determinants.",
+      "paper_only": "For k >= 2: the lists U and V_i, the verification of the orthogonality and determinant hypotheses for them (Lemmas 8.1 to 8.5), and the nonzero avoidance polynomial."
+    },
+    {
+      "label": "lem:bm-basic",
+      "environment": "lemma",
+      "number": "8.1",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "The basic block",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "The Gram matrix of U enters the nonzero full Gram determinant of each of the three cubatures.",
+      "paper_only": "The Kronecker formula and det G_i = (-1)^(b_i(b_i+1)/2) beta_i^(b_i+1) for every admissible t."
+    },
+    {
+      "label": "lem:bm-orth",
+      "environment": "lemma",
+      "number": "8.2",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Orthogonality of the lists",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "Every cross-list Gram entry is checked to vanish in the three cubatures.",
+      "paper_only": "Orthogonality for every admissible t and every moment data."
+    },
+    {
+      "label": "lem:bm-anti",
+      "environment": "lemma",
+      "number": "8.3",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "The anti-triangular blocks",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "anti_diagonal"
+      ],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "TR29.anti_diagonal_blocks, with r = delta_i and q = q_i, gives nonsingularity from the zero and anti-diagonal pattern. The internal zeros for s + s' <= d_i are checked in the three cubatures.",
+      "paper_only": "The moment cancellations, the identification of the anti-diagonal blocks with H_i(t), and the determinant formula."
+    },
+    {
+      "label": "lem:bm-division",
+      "environment": "lemma",
+      "number": "8.4",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "A finite division identity",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "The identity is checked at z = 0, 1, -2/3 and t = 5/7 for every (d_i, b_i) of the three cubatures.",
+      "paper_only": "The identity for all b, d, t and z, and the remainder estimate."
+    },
+    {
+      "label": "lem:bm-Hi",
+      "environment": "lemma",
+      "number": "8.5",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Nonsingularity of the additional blocks",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "geometric_kernel",
+        "matrix_moment"
+      ],
+      "exact_checks": [],
+      "covered": "The general-b matrix-moment target gives, over any field including C(t_j : j != i), zero coefficients below d_i-b_i+1, the leading coefficient (-1)^(d_i-b_i) times the degree-b_i matrix moment and a nonzero series determinant.",
+      "paper_only": "The identification of H_i(t) with that series, its matrix moments from the product rule, and the nonzero rational determinant."
+    },
+    {
+      "label": "prop:bm-reduction",
+      "environment": "proposition",
+      "number": "8.1",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Reduction to moments",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "The affine chart, the differential operators, the moments m_i(e) and beta_i, and the application of Theorem 8.2."
+    },
+    {
+      "label": "lem:bm-lattice",
+      "environment": "lemma",
+      "number": "8.6",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "A lattice avoiding the coefficient box",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "det Delta = N, the adjugate identity, and lattice membership at every point of the coefficient box, for eight tuples.",
+      "paper_only": "The determinant, index and box avoidance for all exponents."
+    },
+    {
+      "label": "lem:bm-characters",
+      "environment": "lemma",
+      "number": "8.7",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Finite character orthogonality",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "The characters of the eight quotient groups are enumerated, and each coefficient sum is reduced exactly modulo the N-th cyclotomic polynomial.",
+      "paper_only": "Character counting and orthogonality for every finite abelian group."
+    },
+    {
+      "label": "prop:bm-upper",
+      "environment": "proposition",
+      "number": "8.2",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "An explicit decomposition",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "Every coefficient of the identity, including its binomial normalization, for eight tuples.",
+      "paper_only": "The identity, nonzero coefficients and summand count for all exponents."
+    },
+    {
+      "label": "rem:bm-W",
+      "environment": "remark",
+      "number": "8.1",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "The case $`b_i=1`$",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "The tuple a = (2,2,2), b = (1,1,1) gives a checked 20-term character identity.",
+      "paper_only": "The reduction of the moments, lists and expansions of Section 8 to those of Section 7 for all k and d_i."
+    },
+    {
+      "label": "ex:bm-54",
+      "environment": "example",
+      "number": "8.1",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Ranks $`20`$ and $`54`$",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper",
+        "monomial_lower"
+      ],
+      "covered": "The 20- and 54-term character identities are checked, and the 54-function Gram list is checked for one rational cubature with d = (5,5,5), b = (2,2,2).",
+      "paper_only": "The lower bounds 20 and 54 for every decomposition."
+    },
+    {
+      "label": "rem:bm-pure",
+      "environment": "remark",
+      "number": "8.2",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Pure-power factors",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No Lean declaration or exact check is assigned.",
+      "paper_only": "Where b_i >= 1 is used and the counterexample x^a."
+    },
+    {
+      "label": "lem:division",
+      "environment": "lemma",
+      "number": "B.1",
+      "section": "B",
+      "source": "paper/appendices/B_laurent.tex",
+      "title": "Finite division identity",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "The case b = 1, d = 3 of the identity of Lemma 8.4, which is this identity for d = 3, is checked at z = 0, 1, -2/3 and t = 5/7.",
+      "paper_only": "The identity for every d, t and z."
+    }
+  ],
+  "supporting_steps": [
+    {
+      "label": "eq:upper",
+      "section": "1",
+      "source": "paper/sections/00_introduction.tex",
+      "title": "Cited upper bound",
+      "lean_targets": [],
+      "exact_checks": [
+        "cyclotomic_cubic"
+      ],
+      "covered": "One 20-term decomposition for k = 3 and d_i = 3.",
+      "paper_only": "The cited general construction."
+    },
+    {
+      "label": "eq:moments",
+      "section": "3",
+      "source": "paper/sections/02_moments.tex",
+      "title": "Moment conditions on the full box",
+      "lean_targets": [],
+      "exact_checks": [
+        "cyclotomic_cubic"
+      ],
+      "covered": "The 64 moments of one decomposition.",
+      "paper_only": "The conditions for every decomposition."
+    },
+    {
+      "label": "eq:Mcount",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Length of the test-function list",
+      "lean_targets": [
+        "w_count"
+      ],
+      "exact_checks": [],
+      "covered": "The block sizes 2^k and (d_i-2)2^(k-1) and their sum.",
+      "paper_only": "The list itself."
+    },
+    {
+      "label": "eq:det-block",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Determinant of an additional Gram block",
+      "lean_targets": [
+        "anti_diagonal"
+      ],
+      "exact_checks": [
+        "charts_univariate"
+      ],
+      "covered": "Nonsingularity from the anti-triangular pattern; one-coordinate block ranks.",
+      "paper_only": "The signed power formula."
+    },
+    {
+      "label": "eq:laurent",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Leading Laurent coefficient of $`H_i`$",
+      "lean_targets": [
+        "geometric_kernel",
+        "matrix_moment"
+      ],
+      "exact_checks": [],
+      "covered": "The formal leading coefficient and nonzero series determinant.",
+      "paper_only": "The identification with H_i(t)."
+    },
+    {
+      "label": "eq:avoidance",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "Avoidance polynomial for the W lists",
+      "lean_targets": [
+        "chart_avoidance"
+      ],
+      "exact_checks": [],
+      "covered": "One finite t avoiding given nonzero polynomials and all poles.",
+      "paper_only": "That the factors N_i are nonzero."
+    },
+    {
+      "label": "eq:twenty",
+      "section": "7",
+      "source": "paper/sections/06_test_functions.tex",
+      "title": "The $`20\\times20`$ Gram matrix",
+      "lean_targets": [],
+      "exact_checks": [
+        "charts_cubic"
+      ],
+      "covered": "Block ranks and full rank for one decomposition.",
+      "paper_only": "Every decomposition."
+    },
+    {
+      "label": "eq:bm-leading",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Leading Laurent coefficient for general $`b_i`$",
+      "lean_targets": [
+        "matrix_moment"
+      ],
+      "exact_checks": [],
+      "covered": "The formal leading coefficient at order d_i-b_i+1.",
+      "paper_only": "The identification with H_i(t)."
+    },
+    {
+      "label": "eq:bm-avoidance",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Avoidance polynomial and final count",
+      "lean_targets": [
+        "chart_avoidance",
+        "gram_assembly"
+      ],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "Common finite t; orthogonal Gram assembly; three evaluated cubatures.",
+      "paper_only": "That the polynomial is nonzero."
+    },
+    {
+      "label": "eq:bm-division",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Finite division identity",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "Selected rational nodes and one parameter.",
+      "paper_only": "All nodes and parameters."
+    },
+    {
+      "label": "eq:bm-box",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Lattice avoids the coefficient box",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "Eight tuples, every box point.",
+      "paper_only": "All exponents."
+    },
+    {
+      "label": "eq:bm-character",
+      "section": "8",
+      "source": "paper/sections/07_binary_monomials.tex",
+      "title": "Character decomposition",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_upper"
+      ],
+      "covered": "Every coefficient for eight tuples.",
+      "paper_only": "All exponents."
+    },
+    {
+      "label": "eq:division",
+      "section": "B",
+      "source": "paper/appendices/B_laurent.tex",
+      "title": "Division identity for $`b=1`$",
+      "lean_targets": [],
+      "exact_checks": [
+        "monomial_lower"
+      ],
+      "covered": "The case d = 3 at selected nodes.",
+      "paper_only": "All d."
+    },
+    {
+      "label": "eq:det-laurent",
+      "section": "B",
+      "source": "paper/appendices/B_laurent.tex",
+      "title": "Leading determinant of $`H_i`$",
+      "lean_targets": [
+        "matrix_moment"
+      ],
+      "exact_checks": [],
+      "covered": "Nonzero determinant of the formal series.",
+      "paper_only": "The transfer to det H_i(t)."
+    }
+  ],
+  "aggregate": {
+    "declaration": "TR29.core_theorems",
+    "proposition": "TR29.CoreTheorems",
+    "source": "lean/TR29/Proofs.lean",
+    "scope": "The conjunction of the seven algebraic targets. It states neither rank formula and does not construct the test functions or verify their Gram hypotheses."
+  }
+}

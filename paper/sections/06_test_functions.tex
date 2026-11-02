@@ -1,0 +1,277 @@
+\section{A specific family of test functions}\label{sec:tests}
+
+We now fix the test functions. All remaining assertions concern this
+specific choice. Write $[k]=\{1,\ldots,k\}$, and use $\iota$ for a
+multi-index with entries in $\{0,1\}$.
+
+\subsection{The function list and its evaluation matrix}
+The basic family is
+\begin{equation}\label{eq:B0}
+\cB_0:=\left\{
+\prod_{j=1}^k\frac{Z_j^{\iota_j}}{h_j(Z_j)}:
+\iota\in\{0,1\}^k\right\}.
+\end{equation}
+For each $i\in[k]$, add the family
+\begin{equation}\label{eq:Bi}
+\cB_i:=\left\{
+\frac{Z_i^s}{h_i(Z_i)^s}
+\prod_{j\ne i}\frac{Z_j^{\iota_j}}{h_j(Z_j)}:
+2\le s\le d_i-1,\quad
+\iota\in\{0,1\}^{[k]\setminus\{i\}}\right\}.
+\end{equation}
+List $\cB_0,\cB_1,\ldots,\cB_k$ in this order. Within $\cB_i$,
+order first by increasing $s$, then lexicographically by $\iota$;
+order $\cB_0$ lexicographically. Denote the resulting list by
+$\phi_1,\ldots,\phi_M$. Its length is
+\begin{equation}\label{eq:Mcount}
+M=2^k+\sum_{i=1}^k(d_i-2)2^{k-1}
+=2^{k-1}\left(\sum_{i=1}^k d_i-2k+2\right).
+\end{equation}
+This is a count of the indexed list; the linear independence of the
+evaluation vectors $\ev(\phi_a)$ is proved below. Both $\phi_a$ and $\phi_b$ in \eqref{eq:Pab} are chosen from
+this list, possibly from the same family.
+
+\begin{example}[The twenty functions for three cubic factors]\label{ex:list}
+When $k=3$ and $d_1=d_2=d_3=3$, let $h_i=1+t_iZ_i$ and
+$h=h_1h_2h_3$. With the above ordering, the four rows below list the
+four families:
+\begin{align}
+(\phi_1,\ldots,\phi_8)
+&=\frac1h(1,Z_3,Z_2,Z_2Z_3,Z_1,Z_1Z_3,Z_1Z_2,Z_1Z_2Z_3),\label{eq:cubic-basic}\\
+(\phi_9,\ldots,\phi_{12})
+&=\frac{Z_1^2}{h_1^2h_2h_3}(1,Z_3,Z_2,Z_2Z_3),\notag\\
+(\phi_{13},\ldots,\phi_{16})
+&=\frac{Z_2^2}{h_1h_2^2h_3}(1,Z_3,Z_1,Z_1Z_3),\notag\\
+(\phi_{17},\ldots,\phi_{20})
+&=\frac{Z_3^2}{h_1h_2h_3^2}(1,Z_2,Z_1,Z_1Z_2).\notag
+\end{align}
+Their evaluations form
+\begin{equation}\label{eq:cubic-E}
+E=\bigl[E_0\mid E_1\mid E_2\mid E_3\bigr],
+\qquad E_0\in\C^{r\times8},\quad E_i\in\C^{r\times4}\ (i=1,2,3).
+\end{equation}
+For example, the $\ell$th row of $E_1$ is
+$\frac{z_{1\ell}^2}{h_1(z_{1\ell})^2h_2(z_{2\ell})h_3(z_{3\ell})}
+(1,z_{3\ell},z_{2\ell},z_{2\ell}z_{3\ell})$.
+\end{example}
+
+\subsection{The basic block and the vanishing cross blocks}
+Partition the Gram matrix according to the function families. Let
+$\cG_0$ be its block on $\cB_0$, and let $\cG_i$ be its block on
+$\cB_i$ for $i\ge1$.
+
+\begin{lemma}[Block diagonal structure]\label{lem:blocks}
+For every admissible $t$, the Gram matrix of
+\eqref{eq:B0}--\eqref{eq:Bi} has the form
+\begin{equation}\label{eq:block-diagonal}
+\cG=
+\begin{pmatrix}
+\cG_0&0&\cdots&0\\
+0&\cG_1&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&\cG_k
+\end{pmatrix},
+\qquad
+\cG_0=\bigotimes_{i=1}^k G_i(t_i),
+\end{equation}
+where
+\begin{equation}\label{eq:Gi}
+G_i(t_i)=
+\begin{pmatrix}
+\gamma_i+(d_i-2)t_i\beta_i&\beta_i\\
+\beta_i&0
+\end{pmatrix},
+\qquad \det G_i=-\beta_i^2\ne0.
+\end{equation}
+In particular, $\cG_0$ is invertible for every admissible $t$.
+\end{lemma}
+\begin{proof}
+For two basic functions with indices $\iota,\jmath$, multiplication
+by $H_t$ cancels the denominators and gives
+\begin{equation}\label{eq:basic-product}
+P_{ab}(Z)=\prod_i Z_i^{\iota_i+\jmath_i}h_i(Z_i)^{d_i-2}
+\in\cP_{\bd}.
+\end{equation}
+The product rule \eqref{eq:product} shows that the Gram entry factors
+over the coordinates. For each coordinate the three possibilities
+$\iota_i+\jmath_i=0,1,2$ give, respectively,
+$\gamma_i+(d_i-2)t_i\beta_i$, $\beta_i$, and $0$. This proves the
+Kronecker product formula and \eqref{eq:Gi}.
+
+For a function from $\cB_i$ paired with one from $\cB_0$, the
+$i$th coordinate factor of $P_{ab}$ is
+$Z_i^{s+\jmath_i}h_i(Z_i)^{d_i-s-1}$. It is a polynomial whose
+monomials have degrees between $2$ and $d_i$, so its $L_i$-value
+is zero. All other factors lie within their prescribed degree bounds.
+The same factor occurs when a function from $\cB_i$ is paired with
+one from $\cB_j$, $j\ne i$, and the $j$th factor
+$Z_j^{s'+\iota_j}h_j(Z_j)^{d_j-s'-1}$ is a polynomial of degree at
+most $d_j$ (see \eqref{eq:cross-additional}). Hence all cross blocks
+vanish.
+The full entry formulas are recorded in Appendix~\ref{app:entries}.
+\end{proof}
+
+\begin{example}[An explicit basic Gram block]\label{ex:G0}
+For $k=2$, write $A_i=\gamma_i+(d_i-2)t_i\beta_i$.
+In the order $(0,0),(0,1),(1,0),(1,1)$,
+\begin{equation}\label{eq:four-by-four}
+G_1\otimes G_2=
+\begin{pmatrix}
+A_1A_2&A_1\beta_2&\beta_1A_2&\beta_1\beta_2\\
+A_1\beta_2&0&\beta_1\beta_2&0\\
+\beta_1A_2&\beta_1\beta_2&0&0\\
+\beta_1\beta_2&0&0&0
+\end{pmatrix}.
+\end{equation}
+The product structure comes from \eqref{eq:product}, even though
+the points $z_\ell$ need not form a Cartesian grid.
+\end{example}
+
+\subsection{The additional blocks}
+Put $q=2^{k-1}$. Inside $\cG_i$, group the functions by
+$s=2,\ldots,d_i-1$. Each $(s,s')$ block is a $q\times q$ matrix
+whose rows and columns are indexed by $\iota,\jmath$ on
+$[k]\setminus\{i\}$. Define the $q\times q$ matrix $H_i(t)$ by
+\begin{equation}\label{eq:Hi}
+[H_i(t)]_{\iota,\jmath}
+=\sum_{\ell=1}^r w_\ell
+\frac{z_{i\ell}^{d_i+1}}{1+t_i z_{i\ell}}
+\prod_{j\ne i}z_{j\ell}^{\iota_j+\jmath_j}
+(1+t_jz_{j\ell})^{d_j-2}.
+\end{equation}
+Here $H_i$ is a matrix; it is distinct from the scalar polynomial
+$H_t$ in \eqref{eq:Ht}.
+
+\begin{lemma}[The anti-triangular blocks]\label{lem:anti}
+The $(s,s')$ block of $\cG_i$ is zero if $s+s'\le d_i$ and
+equals $H_i(t)$ if $s+s'=d_i+1$. Consequently,
+\begin{equation}\label{eq:det-block}
+\det\cG_i=\pm\det H_i(t)^{d_i-2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The relevant entry is
+\begin{equation}\label{eq:ss-entry}
+\sum_{\ell=1}^r w_\ell z_{i\ell}^{s+s'}
+(1+t_i z_{i\ell})^{d_i-s-s'}
+\prod_{j\ne i}z_{j\ell}^{\iota_j+\jmath_j}
+(1+t_j z_{j\ell})^{d_j-2}.
+\end{equation}
+If $s+s'\le d_i$, the expression inside the weighted sum is a
+polynomial in $\cP_{\bd}$ whose $i$th-coordinate factor has all
+degrees at least $4$. Its moment therefore vanishes.
+If $s+s'=d_i+1$, the entry is \eqref{eq:Hi}.
+Reversing the order of the $s'$-block columns gives a block lower
+triangular matrix with $d_i-2$ copies of $H_i$ on the diagonal.
+This proves \eqref{eq:det-block}.
+\end{proof}
+
+\begin{example}[Column reversal when $d_i=5$]\label{ex:reversal}
+There are three groups, indexed by $s=2,3,4$. Writing $J_i,K_i$
+for the remaining $q\times q$ blocks, the matrices before and
+after block-column reversal are
+\begin{equation}\label{eq:anti-example}
+\cG_i=
+\begin{pmatrix}
+0&0&H_i\\
+0&H_i&J_i\\
+H_i&J_i&K_i
+\end{pmatrix}
+\quad\longmapsto\quad
+\begin{pmatrix}
+H_i&0&0\\
+J_i&H_i&0\\
+K_i&J_i&H_i
+\end{pmatrix}.
+\end{equation}
+Thus only the invertibility of $H_i$ is needed; no formula for
+$J_i$ or $K_i$ is required.
+\end{example}
+
+\subsection{A common finite parameter choice}
+The remaining task is to show that all the matrices $H_i$ can be
+made invertible at the same admissible parameter vector.
+
+\begin{lemma}[Nonzero determinant of each additional block]\label{lem:Hi}
+For every $i$, $\det H_i(t)$ is a nonzero rational function of $t$.
+More precisely, for arbitrary fixed $t_j$ ($j\ne i$), its matrix has
+the Laurent expansion at $t_i=\infty$
+\begin{equation}\label{eq:laurent}
+H_i(t)=(-1)^{d_i-1}\beta_i t_i^{-d_i}
+\bigotimes_{j\ne i}G_j(t_j)+O(t_i^{-d_i-1}).
+\end{equation}
+The leading coefficient matrix is invertible.
+\end{lemma}
+\begin{proof}
+Expand $z^{d_i+1}/(1+t_i z)$ through order $t_i^{-d_i}$ in
+\eqref{eq:Hi}. The coefficients involving $z_i^{d_i},\ldots,z_i^2$
+vanish by the moment conditions. The next coefficient involves $z_i$;
+the product rule gives $\beta_i\bigotimes_{j\ne i}G_j(t_j)$,
+with the sign in \eqref{eq:laurent}. Appendix~\ref{app:laurent}
+gives the exact finite identity and verifies this calculation also
+when some $z_{i\ell}=0$.
+Each $G_j$ is invertible by \Cref{lem:blocks}, so the leading
+coefficient is invertible and $\det H_i$ is not identically zero.
+\end{proof}
+
+\begin{proposition}[Simultaneous Gram nondegeneracy]\label{prop:nondegenerate}
+For any points and weights satisfying \eqref{eq:moments}, there
+exists a finite $t\in\C^k$ such that $1+t_i z_{i\ell}\ne0$
+for every $i,\ell$ and the Gram matrix of
+\eqref{eq:B0}--\eqref{eq:Bi} is invertible.
+\end{proposition}
+\begin{proof}
+Put $D_i:=\prod_{\ell=1}^r(1+t_iz_{i\ell})^q$ and
+$N_i:=D_i\det H_i$. The entries of $H_i$ have denominators dividing
+$\prod_\ell(1+t_iz_{i\ell})$, so $N_i\in\C[t]$; both $N_i$ and $D_i$
+are nonzero polynomials, and $\det H_i=N_i/D_i$. The polynomial
+\begin{equation}\label{eq:avoidance}
+Q(t):=\left(\prod_{i,\ell}(1+t_i z_{i\ell})\right)
+\prod_{i=1}^kN_i(t)D_i(t)
+\end{equation}
+is nonzero. Since $\C$ is infinite, there is a finite parameter
+vector with $Q(t)\ne0$. At this vector all evaluations are defined
+and all $H_i$ are invertible. By \Cref{lem:anti}, each $\cG_i$ is
+invertible; by \Cref{lem:blocks}, the full block diagonal matrix
+$\cG$ is invertible.
+\end{proof}
+
+The one-parameter expansions in \Cref{lem:Hi} prove that the
+individual determinants are nonzero rational functions. They are
+not used to take all parameters to infinity simultaneously.
+The finite choice in \eqref{eq:avoidance} supplies the single
+parameter vector needed in the dimension argument.
+
+\begin{example}[The $20\times20$ Gram matrix]\label{ex:twenty}
+For the cubic triple in \Cref{ex:list}, each additional family has
+only $s=2$, so $\cG_i=H_i$ for $i=1,2,3$. The full matrix is
+\begin{equation}\label{eq:twenty}
+\cG=
+\begin{pmatrix}
+G_1\otimes G_2\otimes G_3&0_{8\times4}&0_{8\times4}&0_{8\times4}\\
+0_{4\times8}&H_1&0_{4\times4}&0_{4\times4}\\
+0_{4\times8}&0_{4\times4}&H_2&0_{4\times4}\\
+0_{4\times8}&0_{4\times4}&0_{4\times4}&H_3
+\end{pmatrix}.
+\end{equation}
+Here $G_i=\left(\begin{smallmatrix}\gamma_i+t_i/3&1/3\\1/3&0\end{smallmatrix}\right)$
+and each $H_i$ is $4\times4$. For example,
+$H_1=\frac13t_1^{-3}(G_2\otimes G_3)+O(t_1^{-4})$ with $t_2,t_3$
+fixed. The other two blocks have the analogous expansions.
+\Cref{prop:nondegenerate} makes all four diagonal blocks invertible
+at one finite $t$. Thus the twenty columns of $E$ are independent.
+\end{example}
+
+\begin{proof}[Proof of \Cref{thm:main}]
+Take an arbitrary decomposition \eqref{eq:decomposition} with $r$
+nonzero terms. By \Cref{lem:coordinates,lem:moments}, it determines
+points and nonzero weights satisfying \eqref{eq:moments} with
+$\beta_i=1/d_i$. Construct the $M$ test functions
+\eqref{eq:B0}--\eqref{eq:Bi} and choose $t$ using
+\Cref{prop:nondegenerate}. Their Gram matrix is invertible, so
+\Cref{lem:dimension} yields $r\ge M$. This applies to every
+decomposition, hence $R_{\bd}(F)\ge M$. This lower bound uses
+neither $k\ge2$ nor $d_i\ge3$; it holds for all $k\ge1$ and
+$d_i\ge2$. Combining with
+\eqref{eq:upper} proves \eqref{eq:main}.
+\end{proof}
